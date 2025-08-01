@@ -310,36 +310,87 @@
                         Reduce shrinkage by 40% and security costs by 60% with military-grade AI surveillance
                     </p>
                     
-                    <div class="roi-calculator">
-                        <h3 class="text-lg font-bold mb-4">CALCULATE YOUR ROI:</h3>
-                        <div class="mb-4">
-                            <label class="block mb-2">Number of Cameras</label>
-                            <input type="range" min="1" max="100" value="10" class="w-full" id="camera-slider">
-                            <div class="flex justify-between text-sm">
-                                <span>1</span>
-                                <span id="camera-value">10</span>
-                                <span>100+</span>
-                            </div>
+        <!-- Add this right after your Hero section or wherever you want the ROI calculator -->
+        <section class="py-20 bg-slate-900 bg-opacity-50">
+            <div class="container mx-auto px-6">
+                <div class="max-w-2xl mx-auto bg-slate-800 bg-opacity-50 backdrop-blur-sm rounded-xl p-8">
+                    <h2 class="text-3xl font-bold mb-6 text-center gradient-text">Calculate Your ROI</h2>
+                    
+                    <!-- Camera Slider -->
+                    <div class="mb-8">
+                        <div class="flex justify-between items-center mb-3">
+                            <label class="text-gray-300 font-medium">Number of Cameras</label>
+                            <span class="text-blue-400 font-medium px-3 py-1 bg-blue-400 bg-opacity-10 rounded-full" id="camera-value">10</span>
                         </div>
-                        <div class="mb-4">
-                            <label class="block mb-2">Average Monthly Loss ($)</label>
-                            <input type="number" id="monthly-loss" class="w-full p-2 bg-slate-800 rounded" placeholder="e.g., 15000" value="15000">
-                        </div>
-                        <div class="roi-result">
-                            Estimated Savings: <span id="savings">$6,000</span>/month
+                        
+                        <input type="range" min="1" max="100" value="10" 
+                            class="w-full h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer slider-thumb" 
+                            id="camera-slider">
+                        
+                        <div class="flex justify-between text-xs text-gray-400 mt-2 px-1">
+                            <span>1</span>
+                            <span>25</span>
+                            <span>50</span>
+                            <span>75</span>
+                            <span>100+</span>
                         </div>
                     </div>
-                    
-                    <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 mt-8">
-                        <button class="gradient-btn text-white px-8 py-3 rounded-full font-medium contact-btn">
+
+                    <!-- Monthly Loss Input -->
+                    <div class="mb-8">
+                        <label class="block text-gray-300 font-medium mb-3">Average Monthly Loss ($)</label>
+                        <input type="number" id="monthly-loss" 
+                            class="w-full p-3 bg-slate-700 rounded-lg focus:ring-2 focus:ring-blue-400 focus:border-transparent" 
+                            placeholder="e.g., 15000" value="15000">
+                    </div>
+
+                    <!-- ROI Result -->
+                    <div class="bg-slate-700 p-4 rounded-lg mb-8 border border-slate-600">
+                        <p class="text-gray-400">Estimated Monthly Savings:</p>
+                        <p class="text-2xl font-bold text-[#00f5d0]" id="savings">$6,000</p>
+                    </div>
+
+                    <!-- CTA Buttons -->
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button class="gradient-btn text-white px-8 py-3 rounded-full font-medium hover:opacity-90 transition contact-btn">
                             Start Free Pilot <i class="fas fa-arrow-right ml-2"></i>
                         </button>
-                        <button
-                            class="features-btn border border-blue-400 text-blue-400 px-8 py-3 rounded-full font-medium hover:bg-blue-400 hover:bg-opacity-10 transition"
-                        >
+                        <button class="border border-blue-400 text-blue-400 px-8 py-3 rounded-full font-medium hover:bg-blue-400 hover:bg-opacity-10 transition">
                             See Case Studies
                         </button>
                     </div>
+                </div>
+            </div>
+        </section>
+        <script>
+            // ROI Calculator Functionality
+            const slider = document.getElementById('camera-slider');
+            const valueDisplay = document.getElementById('camera-value');
+            const monthlyLossInput = document.getElementById('monthly-loss');
+            const savingsDisplay = document.getElementById('savings');
+            
+            function calculateROI() {
+                const cameraCount = parseInt(slider.value);
+                const monthlyLoss = parseInt(monthlyLossInput.value) || 0;
+                
+                // Example calculation - adjust this formula to your actual business logic
+                const savings = monthlyLoss * 0.4 * (cameraCount / 10);
+                
+                // Format the number with commas
+                savingsDisplay.textContent = '$' + savings.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            }
+            
+            slider.addEventListener('input', function() {
+                valueDisplay.textContent = this.value;
+                calculateROI();
+            });
+            
+            monthlyLossInput.addEventListener('input', calculateROI);
+            
+            // Initialize calculation
+            calculateROI();
+        </script>
+
                     
                     <div class="trust-badges mt-8">
                         <div class="badge">
