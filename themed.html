@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Eagle Eye Systems | AI-Powered Security Analytics</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        />
+        <style>
+            @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
+
+            body {
+                font-family: "Inter", sans-serif;
+                background-color: #f8fafc;
+                color: #1e293b;
+                scroll-behavior: smooth;
+            }
+
+            .nav-link {
+                position: relative;
+            }
+
+            .nav-link::after {
+                content: "";
+                position: absolute;
+                bottom: -2px;
+                left: 0;
+                width: 0;
+                height: 2px;
+                background-color: #1e40af;
+                transition: width 0.3s ease;
+            }
+
+            .nav-link:hover::after {
+                width: 100%;
+            }
+
+            .feature-card {
+                transition: all 0.3s ease;
+                border: 1px solid #e2e8f0;
+            }
+
+            .feature-card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+                border-color: #bfdbfe;
+            }
+
+            .btn-primary {
+                background-color: #1e40af;
+                color: white;
+                transition: all 0.3s ease;
+            }
+
+            .btn-primary:hover {
+                background-color: #1e3a8a;
+                transform: translateY(-1px);
+            }
+            
+            .back-to-top {
+                position: fixed;
+                bottom: 80px;
+                right: 30px;
+                z-index: 50;
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                background-color: #1e40af;
+                color: white;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+                opacity: 0;
+                transform: translateY(20px);
+                transition: all 0.3s ease;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            }
+            
+            .back-to-top.show {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            /* ROI Calculator */
+            .roi-calculator {
+                background: white;
+                border: 1px solid #e2e8f0;
+                border-radius: 8px;
+                padding: 20px;
+                margin-top: 30px;
+            }
+            
+            .roi-result {
+                font-size: 1.25rem;
+                font-weight: bold;
+                color: #1e40af;
+                margin-top: 15px;
+                text-align: center;
+            }
+            
+            /* Trust Badges */
+            .trust-badges {
+                display: flex;
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 15px;
+                margin: 30px 0;
+            }
+            
+            .badge {
+                background: white;
+                border: 1px solid #e2e8f0;
+                border-radius: 6px;
+                padding: 8px 12px;
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                font-size: 0.85rem;
+            }
+            
+            /* Testimonial Cards */
+            .testimonial-card {
+                background: white;
+                border-radius: 8px;
+                padding: 20px;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            }
+            
+            .testimonial-card::before {
+                content: "“";
+                position: absolute;
+                top: -15px;
+                left: 15px;
+                font-size: 4rem;
+                color: #bfdbfe;
+                opacity: 0.5;
+                font-family: Georgia, serif;
+            }
+
+            /* Sticky CTA */
+            .sticky-cta {
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                background: white;
+                padding: 12px;
+                box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.05);
+                z-index: 40;
+                transform: translateY(100%);
+                transition: transform 0.3s ease;
+                border-top: 1px solid #e2e8f0;
+            }
+            
+            .sticky-cta.show {
+                transform: translateY(0);
+            }
+            
+            .section-divider {
+                border-top: 1px solid #e2e8f0;
+                margin: 80px auto;
+                max-width: 1200px;
+            }
+        </style>
+    </head>
+    <body class="min-h-screen">
+        <!-- Sticky CTA -->
+        <div class="sticky-cta">
+            <div class="container mx-auto flex flex-col sm:flex-row items-center justify-between">
+                <div class="mb-3 sm:mb-0">
+                    <span class="text-blue-800 font-bold">EARLY ACCESS:</span> 
+                    <span>Join our limited pilot program</span>
+                </div>
+                <button class="btn-primary text-white px-6 py-2 rounded font-medium contact-btn">
+                    Apply Now <i class="fas fa-arrow-right ml-2"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Navigation -->
+        <nav class="container mx-auto px-6 py-6 bg-white">
+            <div class="flex justify-between items-center">
+                <div class="text-2xl font-bold text-blue-900">
+                    <a href="#hero">Eagle Eye Systems</a>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#hero" class="nav-link">Home</a>
+                    <a href="#features" class="nav-link">Features</a>
+                    <a href="#pricing" class="nav-link">Pricing</a>
+                    <a href="#why-us" class="nav-link">Why Us</a>
+                    <a href="#use-cases" class="nav-link">Use Cases</a>
+                    <a href="#compliance" class="nav-link">Compliance</a>
+                </div>
+                <div class="hidden md:block">
+                    <button class="btn-primary text-white px-6 py-2 rounded font-medium contact-btn">
+                        Get Demo <i class="fas fa-chevron-right ml-2"></i>
+                    </button>
+                </div>
+                <div class="md:hidden">
+                    <button id="menu-btn" class="text-2xl focus:outline-none">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden md:hidden mt-4 space-y-3">
+                <a href="#hero" class="block nav-link mobile-nav">Home</a>
+                <a href="#features" class="block nav-link mobile-nav">Features</a>
+                <a href="#pricing" class="block nav-link mobile-nav">Pricing</a>
+                <a href="#why-us" class="block nav-link mobile-nav">Why Us</a>
+                <a href="#use-cases" class="block nav-link mobile-nav">Use Cases</a>
+                <a href="#compliance" class="block nav-link mobile-nav">Compliance</a>
+                <button class="btn-primary text-white px-6 py-2 rounded font-medium w-full contact-btn">
+                    Get Demo
+                </button>
+            </div>
+        </nav>
+
+        <!-- Hero Section -->
+        <section id="hero" class="container mx-auto px-6 py-20 md:py-24 bg-white">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-12 md:mb-0">
+                    <h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight text-blue-900">
+                        Enterprise-Grade AI Surveillance
+                        <br>For Modern Security Teams
+                    </h1>
+                    <p class="text-lg mb-8 text-slate-600">
+                        Advanced threat detection powered by machine learning, designed for security professionals.
+                    </p>
+                    
+                    <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                        <button class="btn-primary text-white px-6 py-3 rounded font-medium contact-btn">
+                            Start Free Pilot <i class="fas fa-arrow-right ml-2"></i>
+                        </button>
+                        <button
+                            class="border border-blue-600 text-blue-600 px-6 py-3 rounded font-medium hover:bg-blue-50 transition"
+                        >
+                            See How It Works
+                        </button>
+                    </div>
+                    
+                    <div class="trust-badges mt-8">
+                        <div class="badge">
+                            <i class="fas fa-shield-alt text-blue-600"></i>
+                            <span>GDPR Compliant</span>
+                        </div>
+                        <div class="badge">
+                            <i class="fab fa-aws text-blue-600"></i>
+                            <span>AWS Certified</span>
+                        </div>
+                        <div class="badge">
+                            <i class="fas fa-lock text-blue-600"></i>
+                            <span>256-bit Encryption</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="md:w-1/2 flex justify-center">
+                    <div class="relative w-full max-w-md">
+                        <div
+                            class="relative bg-white rounded-lg border border-gray-200 p-1"
+                        >
+                            <div class="absolute top-4 left-4 bg-red-600 text-white text-xs px-2 py-1 rounded">
+                                DEMO
+                            </div>
+                            <img
+                                src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
+                                alt="Security Camera Analytics"
+                                class="rounded w-full h-auto"
+                                loading="lazy"
+                            />
+                            <div class="absolute bottom-4 left-4 bg-white px-3 py-2 rounded shadow-sm">
+                                <div class="text-blue-800 font-bold">ALERT: Unauthorized Access Detected</div>
+                                <div class="text-xs text-gray-500">Zone 4B • 2 seconds ago</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- Why Choose Us Section -->
+        <section id="why-us" class="py-16 bg-white">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-2xl md:text-3xl font-bold mb-6 text-blue-900">Why Security Professionals Choose Us</h2>
+                <p class="max-w-2xl mx-auto text-slate-600 mb-12">
+                    Trusted by Fortune 500 companies and government agencies worldwide.
+                </p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Reason 1 -->
+                    <div class="feature-card bg-white p-6 rounded-lg">
+                        <div class="text-4xl mb-4 text-blue-600"><i class="fas fa-brain"></i></div>
+                        <h3 class="text-lg font-semibold mb-3">Proven AI Technology</h3>
+                        <p class="text-slate-600">
+                            Models trained on real-world security scenarios with 99.4% accuracy.
+                        </p>
+                    </div>
+                    
+                    <!-- Reason 2 -->
+                    <div class="feature-card bg-white p-6 rounded-lg">
+                        <div class="text-4xl mb-4 text-blue-600"><i class="fas fa-tachometer-alt"></i></div>
+                        <h3 class="text-lg font-semibold mb-3">Enterprise Performance</h3>
+                        <p class="text-slate-600">
+                            Process thousands of camera feeds with sub-second latency.
+                        </p>
+                    </div>
+                    
+                    <!-- Reason 3 -->
+                    <div class="feature-card bg-white p-6 rounded-lg">
+                        <div class="text-4xl mb-4 text-blue-600"><i class="fas fa-lock"></i></div>
+                        <h3 class="text-lg font-semibold mb-3">Military-Grade Security</h3>
+                        <p class="text-slate-600">
+                            End-to-end encryption with zero data retention policies.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- Features Section -->
+        <section id="features" class="py-16 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-2xl md:text-3xl font-bold mb-4 text-blue-900">Advanced Threat Detection</h2>
+                    <p class="max-w-2xl mx-auto text-slate-600">
+                        Comprehensive security features designed for enterprise needs
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Feature 1 -->
+                    <div class="feature-card bg-white p-6 rounded-lg">
+                        <div class="w-12 h-12 bg-blue-50 rounded-lg flex items-center justify-center mb-4">
+                            <i class="fas fa-bolt text-blue-600 text-xl"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold mb-3">Real-time Alerts</h3>
+                        <p class="text-slate-600">
+                            Instant notifications for security incidents with location mapping.
+                        </p>
+                    </div>
+
+                    <!-- Feature 2 -->
+                    <div class="feature-card bg-white p-6 rounded-lg">
+                        <div class="w-12 h-12 bg-blue-50 rounded-lg flex items-center justify-center mb-4">
+                            <i class="fas fa-robot text-blue-600 text-xl"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold mb-3">Custom Detection</h3>
+                        <p class="text-slate-600">
+                            Train models to recognize your specific security requirements.
+                        </p>
+                    </div>
+
+                    <!-- Feature 3 -->
+                    <div class="feature-card bg-white p-6 rounded-lg">
+                        <div class="w-12 h-12 bg-blue-50 rounded-lg flex items-center justify-center mb-4">
+                            <i class="fas fa-chart-line text-blue-600 text-xl"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold mb-3">Risk Analytics</h3>
+                        <p class="text-slate-600">
+                            Identify patterns and predict potential security breaches.
+                        </p>
+                    </div>
+
+                    <!-- Feature 4 -->
+                    <div class="feature-card bg-white p-6 rounded-lg">
+                        <div class="w-12 h-12 bg-blue-50 rounded-lg flex items-center justify-center mb-4">
+                            <i class="fas fa-fingerprint text-blue-600 text-xl"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold mb-3">Access Control</h3>
+                        <p class="text-slate-600">
+                            Facial recognition with 99.8% accuracy for personnel verification.
+                        </p>
+                    </div>
+
+                    <!-- Feature 5 -->
+                    <div class="feature-card bg-white p-6 rounded-lg">
+                        <div class="w-12 h-12 bg-blue-50 rounded-lg flex items-center justify-center mb-4">
+                            <i class="fas fa-sync-alt text-blue-600 text-xl"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold mb-3">Continuous Learning</h3>
+                        <p class="text-slate-600">
+                            System improves with new threat data without manual updates.
+                        </p>
+                    </div>
+
+                    <!-- Feature 6 -->
+                    <div class="feature-card bg-white p-6 rounded-lg">
+                        <div class="w-12 h-12 bg-blue-50 rounded-lg flex items-center justify-center mb-4">
+                            <i class="fas fa-server text-blue-600 text-xl"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold mb-3">On-Premise Option</h3>
+                        <p class="text-slate-600">
+                            Full functionality without cloud dependency for secure facilities.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="mt-12 text-center">
+                    <div class="inline-block bg-blue-50 px-6 py-3 rounded mb-6 text-blue-800">
+                        <i class="fas fa-lock mr-2"></i> Military-Grade Encryption • 99.99% Uptime SLA
+                    </div>
+                    <div>
+                        <button class="btn-primary text-white px-6 py-3 rounded font-medium contact-btn">
+                            Request Technical Specs <i class="fas fa-download ml-2"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- Pricing Section -->
+        <section id="pricing" class="py-16 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-2xl md:text-3xl font-bold mb-4 text-blue-900">Simple, Transparent Pricing</h2>
+                    <p class="max-w-2xl mx-auto text-slate-600">
+                        Security solutions that scale with your organization
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+                    <!-- Starter Plan -->
+                    <div class="feature-card bg-white p-8 rounded-lg">
+                        <h3 class="text-lg font-semibold mb-4">Basic</h3>
+                        <div class="mb-6">
+                            <span class="text-2xl font-bold">$99</span>
+                            <span class="text-slate-600">/month</span>
+                        </div>
+                        <p class="text-slate-600 mb-6">Up to 10 AI-enabled cameras</p>
+                        <ul class="space-y-3 mb-8">
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-blue-600 mr-3"></i>
+                                <span class="text-slate-600">Real-time threat detection</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-blue-600 mr-3"></i>
+                                <span class="text-slate-600">Automated alerts</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-blue-600 mr-3"></i>
+                                <span class="text-slate-600">7-day video retention</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-blue-600 mr-3"></i>
+                                <span class="text-slate-600">Standard analytics</span>
+                            </li>
+                        </ul>
+                        <button class="w-full border border-blue-600 text-blue-600 px-6 py-2 rounded font-medium hover:bg-blue-50 transition contact-btn">
+                            Start Trial
+                        </button>
+                    </div>
+
+                    <!-- Professional Plan -->
+                    <div class="feature-card bg-white p-8 rounded-lg relative border-2 border-blue-600">
+                        <div class="absolute top-0 right-0 bg-blue-600 text-white text-xs px-3 py-1 rounded-bl rounded-tr">
+                            MOST POPULAR
+                        </div>
+                        <h3 class="text-lg font-semibold mb-4">Professional</h3>
+                        <div class="mb-6">
+                            <span class="text-2xl font-bold">$499</span>
+                            <span class="text-slate-600">/month</span>
+                        </div>
+                        <p class="text-slate-600 mb-6">For 10-100 camera deployments</p>
+                        <ul class="space-y-3 mb-8">
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-blue-600 mr-3"></i>
+                                <span class="text-slate-600">All Basic features</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-blue-600 mr-3"></i>
+                                <span class="text-slate-600">Custom AI models</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-blue-600 mr-3"></i>
+                                <span class="text-slate-600">Predictive analytics</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-blue-600 mr-3"></i>
+                                <span class="text-slate-600">30-day video retention</span>
+                            </li>
+                        </ul>
+                        <button class="w-full btn-primary text-white px-6 py-2 rounded font-medium contact-btn">
+                            Get Custom Demo
+                        </button>
+                    </div>
+
+                    <!-- Enterprise Plan -->
+                    <div class="feature-card bg-white p-8 rounded-lg">
+                        <h3 class="text-lg font-semibold mb-4">Enterprise</h3>
+                        <div class="mb-6">
+                            <span class="text-2xl font-bold">Custom</span>
+                        </div>
+                        <p class="text-slate-600 mb-6">For 100+ camera deployments</p>
+                        <ul class="space-y-3 mb-8">
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-blue-600 mr-3"></i>
+                                <span class="text-slate-600">All Professional features</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-blue-600 mr-3"></i>
+                                <span class="text-slate-600">On-premise deployment</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-blue-600 mr-3"></i>
+                                <span class="text-slate-600">Dedicated support</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-blue-600 mr-3"></i>
+                                <span class="text-slate-600">Unlimited retention</span>
+                            </li>
+                        </ul>
+                        <button class="w-full border border-blue-600 text-blue-600 px-6 py-2 rounded font-medium hover:bg-blue-50 transition contact-btn">
+                            Contact Sales
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="mt-8 text-center">
+                    <p class="max-w-2xl mx-auto text-slate-600">
+                        <i class="fas fa-info-circle mr-2 text-blue-600"></i> 
+                        All plans include enterprise-grade security and support.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- CTA Section -->
+        <section class="py-16 bg-blue-900 text-white">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-2xl md:text-3xl font-bold mb-6">Ready to Enhance Your Security?</h2>
+                <p class="max-w-2xl mx-auto text-blue-100 mb-8">
+                    Schedule a consultation with our security experts to evaluate your needs.
+                </p>
+                
+                <div class="max-w-md mx-auto bg-blue-800 rounded-lg p-6 mb-8">
+                    <div class="flex flex-col sm:flex-row justify-between items-center">
+                        <div class="text-left mb-4 sm:mb-0">
+                            <div class="text-sm text-blue-200">LIMITED AVAILABILITY</div>
+                            <div class="font-bold">Free Security Assessment</div>
+                        </div>
+                        <button class="bg-white text-blue-800 px-6 py-2 rounded font-medium contact-btn">
+                            Schedule Now <i class="fas fa-arrow-right ml-2"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="flex justify-center">
+                    <div class="flex items-center text-sm text-blue-200">
+                        <i class="fas fa-lock mr-2"></i>
+                        <span>256-bit encryption • Compliance certified • Zero data retention</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Contact Us Form Section -->
+        <section id="contact" class="py-16 bg-white border-t border-gray-200">
+            <div class="container mx-auto px-6">
+                <div class="max-w-4xl mx-auto">
+                    <h2 class="text-2xl md:text-3xl font-bold mb-6 text-blue-900 text-center">Contact Us</h2>
+                    <p class="text-slate-600 mb-8 text-center max-w-2xl mx-auto">
+                        Have questions? Get in touch with our security experts.
+                    </p>
+
+                    <form class="space-y-6">
+                        <!-- Name -->
+                        <div>
+                            <label for="name" class="block text-sm font-medium text-slate-700 mb-1">Full Name</label>
+                            <input type="text" id="name" name="name" required 
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                        </div>
+
+                        <!-- Email -->
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-slate-700 mb-1">Email</label>
+                            <input type="email" id="email" name="email" required 
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                        </div>
+
+                        <!-- Organization -->
+                        <div>
+                            <label for="company" class="block text-sm font-medium text-slate-700 mb-1">Organization (Optional)</label>
+                            <input type="text" id="company" name="company" 
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                        </div>
+
+                        <!-- Message -->
+                        <div>
+                            <label for="message" class="block text-sm font-medium text-slate-700 mb-1">Message</label>
+                            <textarea id="message" name="message" rows="4" required 
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"></textarea>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <div>
+                            <button type="submit" class="btn-primary text-white px-6 py-3 rounded font-medium w-full sm:w-auto">
+                                Send Message <i class="fas fa-paper-plane ml-2"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="bg-slate-900 text-white py-12">
+            <div class="container mx-auto px-6">
+                <div class="flex flex-col md:flex-row justify-between items-start">
+                    <div class="mb-8 md:mb-0">
+                        <div class="text-2xl font-bold mb-4 text-white">
+                            Eagle Eye Systems
+                        </div>
+                        <p class="text-slate-400 max-w-md">
+                            Advanced AI surveillance for enterprise security and asset protection.
+                        </p>
+                    </div>
+                    <div class="grid grid-cols-2 md:grid-cols-3 gap-12">
+                        <div>
+                            <h4 class="text-lg font-semibold mb-4">Product</h4>
+                            <ul class="space-y-2">
+                                <li>
+                                    <a href="#features" class="text-slate-400 hover:text-white transition">Features</a>
+                                </li>
+                                <li>
+                                    <a href="#pricing" class="text-slate-400 hover:text-white transition">Pricing</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="text-slate-400 hover:text-white transition">Security</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="text-lg font-semibold mb-4">Resources</h4>
+                            <ul class="space-y-2">
+                                <li>
+                                    <a href="#" class="text-slate-400 hover:text-white transition">Documentation</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="text-slate-400 hover:text-white transition">ROI Calculator</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="text-slate-400 hover:text-white transition">Compliance</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="text-lg font-semibold mb-4">Company</h4>
+                            <ul class="space-y-2">
+                                <li>
+                                    <a href="#" class="text-slate-400 hover:text-white transition">About</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="text-slate-400 hover:text-white transition">Careers</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="text-slate-400 hover:text-white transition">Contact</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="border-t border-slate-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-slate-500 mb-4 md:mb-0">
+                        &copy; 2023 Eagle Eye Systems. All rights reserved.
+                    </p>
+                    <div class="flex space-x-6">
+                        <a href="#" class="text-slate-400 hover:text-white transition"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-slate-400 hover:text-white transition"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="text-slate-400 hover:text-white transition"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <!-- Back to top button -->
+        <div id="back-to-top" class="back-to-top">
+            <i class="fas fa-arrow-up"></i>
+        </div>
+
+        <script>
+            // Mobile menu toggle
+            const menuBtn = document.getElementById("menu-btn");
+            const mobileMenu = document.getElementById("mobile-menu");
+
+            menuBtn.addEventListener("click", () => {
+                mobileMenu.classList.toggle("hidden");
+            });
+
+            // Close mobile menu when clicking links
+            document.querySelectorAll(".mobile-nav").forEach(link => {
+                link.addEventListener("click", () => {
+                    mobileMenu.classList.add("hidden");
+                });
+            });
+
+            // Contact buttons functionality
+            document.querySelectorAll(".contact-btn").forEach(button => {
+                button.addEventListener("click", () => {
+                    document.getElementById("contact").scrollIntoView({ behavior: "smooth" });
+                });
+            });
+
+            // Back to top button
+            const backToTopButton = document.getElementById("back-to-top");
+            
+            window.addEventListener("scroll", () => {
+                if (window.scrollY > 300) {
+                    backToTopButton.classList.add("show");
+                } else {
+                    backToTopButton.classList.remove("show");
+                }
+                
+                // Show sticky CTA when scrolled past hero
+                const stickyCta = document.querySelector(".sticky-cta");
+                if (window.scrollY > 500) {
+                    stickyCta.classList.add("show");
+                } else {
+                    stickyCta.classList.remove("show");
+                }
+            });
+            
+            backToTopButton.addEventListener("click", (e) => {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: "smooth" });
+            });
+
+            // Add active class to navigation links
+            window.addEventListener("scroll", () => {
+                const sections = document.querySelectorAll("section");
+                const navLinks = document.querySelectorAll(".nav-link");
+                
+                let current = "";
+                
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    
+                    if (pageYOffset >= sectionTop - 100) {
+                        current = section.getAttribute("id");
+                    }
+                });
+                
+                navLinks.forEach(link => {
+                    link.classList.remove("text-blue-600", "font-medium");
+                    if (link.getAttribute("href").substring(1) === current) {
+                        link.classList.add("text-blue-600", "font-medium");
+                    }
+                });
+            });
+
+        </script>
+    </body>
+</html>
