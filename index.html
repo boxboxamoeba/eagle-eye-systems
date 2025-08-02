@@ -91,24 +91,6 @@
                 transform: translateY(0);
             }
 
-            /* Scarcity Timer */
-            .timer {
-                background: rgba(0, 0, 0, 0.3);
-                border: 1px solid var(--primary);
-                border-radius: 10px;
-                padding: 15px;
-                text-align: center;
-                max-width: 300px;
-                margin: 20px auto;
-            }
-            
-            .timer-numbers {
-                font-size: 2rem;
-                font-weight: bold;
-                color: var(--primary);
-                text-shadow: 0 0 10px rgba(0, 245, 208, 0.5);
-            }
-            
             /* ROI Calculator */
             .roi-calculator {
                 background: rgba(15, 23, 42, 0.8);
@@ -155,14 +137,14 @@
             }
             
             .testimonial-card::before {
-            content: "“";           /* a single left-quote character */
-            position: absolute;
-            top: -20px;
-            left: 20px;
-            font-size: 5rem;
-            color: var(--primary);
-            opacity: 0.2;
-            font-family: Georgia, serif;
+                content: "“";
+                position: absolute;
+                top: -20px;
+                left: 20px;
+                font-size: 5rem;
+                color: var(--primary);
+                opacity: 0.2;
+                font-family: Georgia, serif;
             }
 
             /* Sticky CTA */
@@ -206,41 +188,9 @@
                 70% { box-shadow: 0 0 0 15px rgba(0, 245, 208, 0); }
                 100% { box-shadow: 0 0 0 0 rgba(0, 245, 208, 0); }
             }
-            
-            .floating-offer {
-                position: fixed;
-                top: 100px;
-                right: 20px;
-                background: rgba(0, 0, 0, 0.8);
-                border: 2px solid var(--primary);
-                border-radius: 10px;
-                padding: 15px;
-                max-width: 250px;
-                z-index: 98;
-                box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
-                animation: float 6s ease-in-out infinite;
-            }
-            
-            @keyframes float {
-                0% { transform: translateY(0px); }
-                50% { transform: translateY(-15px); }
-                100% { transform: translateY(0px); }
-            }
         </style>
     </head>
     <body class="text-gray-300 min-h-screen">
-        <!-- Scarcity Timer -->
-        <div class="floating-offer">
-            <div class="text-center">
-                <span class="text-[#00f5d0] font-bold">LIMITED OFFER</span>
-                <p class="text-sm mt-1">Free setup + 30-day trial for first 10 clients this week</p>
-                <div class="timer">
-                    <div class="timer-numbers" id="countdown">04:18:32</div>
-                    <div>Remaining</div>
-                </div>
-            </div>
-        </div>
-
         <!-- Live Chat -->
         <div class="live-chat">
             <i class="fas fa-comment-dots text-white text-2xl"></i>
@@ -250,11 +200,11 @@
         <div class="sticky-cta">
             <div class="container mx-auto flex flex-col sm:flex-row items-center justify-between">
                 <div class="mb-3 sm:mb-0">
-                    <span class="text-[#00f5d0] font-bold">SPECIAL OFFER:</span> 
-                    <span>Free 30-day pilot + setup. Limited spots available!</span>
+                    <span class="text-[#00f5d0] font-bold">EARLY ACCESS:</span> 
+                    <span>Join our founding partner program</span>
                 </div>
                 <button class="gradient-btn text-white px-6 py-2 rounded-full font-medium contact-btn">
-                    Claim Offer Now <i class="fas fa-arrow-right ml-2"></i>
+                    Apply Now <i class="fas fa-arrow-right ml-2"></i>
                 </button>
             </div>
         </div>
@@ -269,7 +219,7 @@
                     <a href="#hero" class="nav-link">Home</a>
                     <a href="#features" class="nav-link">Features</a>
                     <a href="#pricing" class="nav-link">Pricing</a>
-                    <a href="#results" class="nav-link">Results</a>
+                    <a href="#why-us" class="nav-link">Why Us</a>
                     <a href="#use-cases" class="nav-link">Use Cases</a>
                     <a href="#compliance" class="nav-link">Compliance</a>
                 </div>
@@ -289,7 +239,7 @@
                 <a href="#hero" class="block nav-link mobile-nav">Home</a>
                 <a href="#features" class="block nav-link mobile-nav">Features</a>
                 <a href="#pricing" class="block nav-link mobile-nav">Pricing</a>
-                <a href="#results" class="block nav-link mobile-nav">Results</a>
+                <a href="#why-us" class="block nav-link mobile-nav">Why Us</a>
                 <a href="#use-cases" class="block nav-link mobile-nav">Use Cases</a>
                 <a href="#compliance" class="block nav-link mobile-nav">Compliance</a>
                 <button class="gradient-btn text-white px-6 py-2 rounded-full font-medium w-full contact-btn">
@@ -303,94 +253,23 @@
             <div class="flex flex-col md:flex-row items-center">
                 <div class="md:w-1/2 mb-12 md:mb-0">
                     <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight">
-                        <span class="gradient-text">Stop Losses. Prevent Threats.</span> 
-                        <br>AI That Pays For Itself
+                        <span class="gradient-text">Next-Gen AI Surveillance</span> 
+                        <br>For Security Teams Who Innovate
                     </h1>
                     <p class="text-xl mb-8 text-gray-400">
-                        Reduce shrinkage by 40% and security costs by 60% with military-grade AI surveillance
+                        Join our early adopter program and be the first to deploy our threat-detection AI.
                     </p>
                     
-        <!-- Add this right after your Hero section or wherever you want the ROI calculator -->
-        <section class="py-20 bg-slate-900 bg-opacity-50">
-            <div class="container mx-auto px-6">
-                <div class="max-w-2xl mx-auto bg-slate-800 bg-opacity-50 backdrop-blur-sm rounded-xl p-8">
-                    <h2 class="text-3xl font-bold mb-6 text-center gradient-text">Calculate Your ROI</h2>
-                    
-                    <!-- Camera Slider -->
-                    <div class="mb-8">
-                        <div class="flex justify-between items-center mb-3">
-                            <label class="text-gray-300 font-medium">Number of Cameras</label>
-                            <span class="text-blue-400 font-medium px-3 py-1 bg-blue-400 bg-opacity-10 rounded-full" id="camera-value">10</span>
-                        </div>
-                        
-                        <input type="range" min="1" max="100" value="10" 
-                            class="w-full h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer slider-thumb" 
-                            id="camera-slider">
-                        
-                        <div class="flex justify-between text-xs text-gray-400 mt-2 px-1">
-                            <span>1</span>
-                            <span>25</span>
-                            <span>50</span>
-                            <span>75</span>
-                            <span>100+</span>
-                        </div>
-                    </div>
-
-                    <!-- Monthly Loss Input -->
-                    <div class="mb-8">
-                        <label class="block text-gray-300 font-medium mb-3">Average Monthly Loss ($)</label>
-                        <input type="number" id="monthly-loss" 
-                            class="w-full p-3 bg-slate-700 rounded-lg focus:ring-2 focus:ring-blue-400 focus:border-transparent" 
-                            placeholder="e.g., 15000" value="15000">
-                    </div>
-
-                    <!-- ROI Result -->
-                    <div class="bg-slate-700 p-4 rounded-lg mb-8 border border-slate-600">
-                        <p class="text-gray-400">Estimated Monthly Savings:</p>
-                        <p class="text-2xl font-bold text-[#00f5d0]" id="savings">$6,000</p>
-                    </div>
-
-                    <!-- CTA Buttons -->
-                    <div class="flex flex-col sm:flex-row gap-4">
-                        <button class="gradient-btn text-white px-8 py-3 rounded-full font-medium hover:opacity-90 transition contact-btn">
+                    <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                        <button class="gradient-btn text-white px-8 py-3 rounded-full font-medium contact-btn">
                             Start Free Pilot <i class="fas fa-arrow-right ml-2"></i>
                         </button>
-                        <button class="border border-blue-400 text-blue-400 px-8 py-3 rounded-full font-medium hover:bg-blue-400 hover:bg-opacity-10 transition">
-                            See Case Studies
+                        <button
+                            class="features-btn border border-blue-400 text-blue-400 px-8 py-3 rounded-full font-medium hover:bg-blue-400 hover:bg-opacity-10 transition"
+                        >
+                            See How It Works
                         </button>
                     </div>
-                </div>
-            </div>
-        </section>
-        <script>
-            // ROI Calculator Functionality
-            const slider = document.getElementById('camera-slider');
-            const valueDisplay = document.getElementById('camera-value');
-            const monthlyLossInput = document.getElementById('monthly-loss');
-            const savingsDisplay = document.getElementById('savings');
-            
-            function calculateROI() {
-                const cameraCount = parseInt(slider.value);
-                const monthlyLoss = parseInt(monthlyLossInput.value) || 0;
-                
-                // Example calculation - adjust this formula to your actual business logic
-                const savings = monthlyLoss * 0.4 * (cameraCount / 10);
-                
-                // Format the number with commas
-                savingsDisplay.textContent = '$' + savings.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-            }
-            
-            slider.addEventListener('input', function() {
-                valueDisplay.textContent = this.value;
-                calculateROI();
-            });
-            
-            monthlyLossInput.addEventListener('input', calculateROI);
-            
-            // Initialize calculation
-            calculateROI();
-        </script>
-
                     
                     <div class="trust-badges mt-8">
                         <div class="badge">
@@ -419,7 +298,7 @@
                             class="relative bg-slate-800 bg-opacity-50 backdrop-blur-sm rounded-2xl p-1 glow-effect"
                         >
                             <div class="absolute top-4 left-4 bg-red-600 text-white text-xs px-2 py-1 rounded animate-pulse">
-                                LIVE
+                                DEMO
                             </div>
                             <img
                                 src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
@@ -437,40 +316,41 @@
             </div>
         </section>
 
-        <!-- Results Section -->
-        <section id="results" class="py-20 bg-slate-900 bg-opacity-50">
-            <div class="container mx-auto px-6">
-                <div class="text-center mb-16">
-                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Proven Results</h2>
-                    <p class="max-w-2xl mx-auto text-gray-400">
-                        Real security ROI from actual deployments
-                    </p>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <div class="text-center p-8 bg-slate-800 rounded-xl">
-                        <div class="text-5xl font-bold gradient-text mb-4">47%</div>
-                        <h3 class="text-xl font-semibold mb-2">Reduction in Shrinkage</h3>
-                        <p class="text-gray-400">Global retail chain (350 locations)</p>
-                    </div>
-                    
-                    <div class="text-center p-8 bg-slate-800 rounded-xl">
-                        <div class="text-5xl font-bold gradient-text mb-4">63%</div>
-                        <h3 class="text-xl font-semibold mb-2">Fewer False Alarms</h3>
-                        <p class="text-gray-400">University campus security</p>
-                    </div>
-                    
-                    <div class="text-center p-8 bg-slate-800 rounded-xl">
-                        <div class="text-5xl font-bold gradient-text mb-4">$1.2M</div>
-                        <h3 class="text-xl font-semibold mb-2">Annual Savings</h3>
-                        <p class="text-gray-400">Fortune 500 manufacturing plant</p>
-                    </div>
-                </div>
+        <!-- Why Choose Us Section -->
+        <section id="why-us" class="py-20 bg-slate-900 bg-opacity-50">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-3xl md:text-4xl font-bold mb-6">Why Early Adopters Choose Us</h2>
+                <p class="max-w-2xl mx-auto text-gray-400 mb-12">
+                    We're building the future of AI surveillance—join us as a founding partner.
+                </p>
                 
-                <div class="mt-16 text-center">
-                    <button class="gradient-btn text-white px-8 py-3 rounded-full font-medium contact-btn">
-                        See Full Case Studies <i class="fas fa-arrow-right ml-2"></i>
-                    </button>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Reason 1 -->
+                    <div class="bg-slate-800 p-8 rounded-xl">
+                        <div class="text-5xl mb-4 text-[#00f5d0]"><i class="fas fa-bolt"></i></div>
+                        <h3 class="text-xl font-semibold mb-3">Cutting-Edge AI</h3>
+                        <p class="text-gray-400">
+                            Proprietary models trained on real-world threats (not just lab data).
+                        </p>
+                    </div>
+                    
+                    <!-- Reason 2 -->
+                    <div class="bg-slate-800 p-8 rounded-xl">
+                        <div class="text-5xl mb-4 text-[#00f5d0]"><i class="fas fa-handshake"></i></div>
+                        <h3 class="text-xl font-semibold mb-3">Founding Partner Perks</h3>
+                        <p class="text-gray-400">
+                            Lock in lifetime discounts + influence our roadmap.
+                        </p>
+                    </div>
+                    
+                    <!-- Reason 3 -->
+                    <div class="bg-slate-800 p-8 rounded-xl">
+                        <div class="text-5xl mb-4 text-[#00f5d0]"><i class="fas fa-lock"></i></div>
+                        <h3 class="text-xl font-semibold mb-3">Zero-Risk Pilot</h3>
+                        <p class="text-gray-400">
+                            30-day free trial. Cancel anytime.
+                        </p>
+                    </div>
                 </div>
             </div>
         </section>
@@ -487,12 +367,8 @@
 
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     <!-- Feature 1 -->
-                    <div
-                        class="feature-card bg-slate-800 bg-opacity-50 backdrop-blur-sm p-8 rounded-xl transition duration-300"
-                    >
-                        <div
-                            class="w-14 h-14 bg-blue-500 bg-opacity-10 rounded-lg flex items-center justify-center mb-6"
-                        >
+                    <div class="feature-card bg-slate-800 bg-opacity-50 backdrop-blur-sm p-8 rounded-xl transition duration-300">
+                        <div class="w-14 h-14 bg-blue-500 bg-opacity-10 rounded-lg flex items-center justify-center mb-6">
                             <i class="fas fa-bolt text-blue-400 text-2xl"></i>
                         </div>
                         <h3 class="text-xl font-semibold mb-3">Real-time Response</h3>
@@ -502,12 +378,8 @@
                     </div>
 
                     <!-- Feature 2 -->
-                    <div
-                        class="feature-card bg-slate-800 bg-opacity-50 backdrop-blur-sm p-8 rounded-xl transition duration-300"
-                    >
-                        <div
-                            class="w-14 h-14 bg-blue-500 bg-opacity-10 rounded-lg flex items-center justify-center mb-6"
-                        >
+                    <div class="feature-card bg-slate-800 bg-opacity-50 backdrop-blur-sm p-8 rounded-xl transition duration-300">
+                        <div class="w-14 h-14 bg-blue-500 bg-opacity-10 rounded-lg flex items-center justify-center mb-6">
                             <i class="fas fa-robot text-blue-400 text-2xl"></i>
                         </div>
                         <h3 class="text-xl font-semibold mb-3">Custom AI Models</h3>
@@ -517,12 +389,8 @@
                     </div>
 
                     <!-- Feature 3 -->
-                    <div
-                        class="feature-card bg-slate-800 bg-opacity-50 backdrop-blur-sm p-8 rounded-xl transition duration-300"
-                    >
-                        <div
-                            class="w-14 h-14 bg-blue-500 bg-opacity-10 rounded-lg flex items-center justify-center mb-6"
-                        >
+                    <div class="feature-card bg-slate-800 bg-opacity-50 backdrop-blur-sm p-8 rounded-xl transition duration-300">
+                        <div class="w-14 h-14 bg-blue-500 bg-opacity-10 rounded-lg flex items-center justify-center mb-6">
                             <i class="fas fa-chart-network text-blue-400 text-2xl"></i>
                         </div>
                         <h3 class="text-xl font-semibold mb-3">Predictive Analytics</h3>
@@ -532,12 +400,8 @@
                     </div>
 
                     <!-- Feature 4 -->
-                    <div
-                        class="feature-card bg-slate-800 bg-opacity-50 backdrop-blur-sm p-8 rounded-xl transition duration-300"
-                    >
-                        <div
-                            class="w-14 h-14 bg-blue-500 bg-opacity-10 rounded-lg flex items-center justify-center mb-6"
-                        >
+                    <div class="feature-card bg-slate-800 bg-opacity-50 backdrop-blur-sm p-8 rounded-xl transition duration-300">
+                        <div class="w-14 h-14 bg-blue-500 bg-opacity-10 rounded-lg flex items-center justify-center mb-6">
                             <i class="fas fa-fingerprint text-blue-400 text-2xl"></i>
                         </div>
                         <h3 class="text-xl font-semibold mb-3">Biometric Watchlists</h3>
@@ -547,12 +411,8 @@
                     </div>
 
                     <!-- Feature 5 -->
-                    <div
-                        class="feature-card bg-slate-800 bg-opacity-50 backdrop-blur-sm p-8 rounded-xl transition duration-300"
-                    >
-                        <div
-                            class="w-14 h-14 bg-blue-500 bg-opacity-10 rounded-lg flex items-center justify-center mb-6"
-                        >
+                    <div class="feature-card bg-slate-800 bg-opacity-50 backdrop-blur-sm p-8 rounded-xl transition duration-300">
+                        <div class="w-14 h-14 bg-blue-500 bg-opacity-10 rounded-lg flex items-center justify-center mb-6">
                             <i class="fas fa-sync-alt text-blue-400 text-2xl"></i>
                         </div>
                         <h3 class="text-xl font-semibold mb-3">Automatic Updates</h3>
@@ -562,12 +422,8 @@
                     </div>
 
                     <!-- Feature 6 -->
-                    <div
-                        class="feature-card bg-slate-800 bg-opacity-50 backdrop-blur-sm p-8 rounded-xl transition duration-300"
-                    >
-                        <div
-                            class="w-14 h-14 bg-blue-500 bg-opacity-10 rounded-lg flex items-center justify-center mb-6"
-                        >
+                    <div class="feature-card bg-slate-800 bg-opacity-50 backdrop-blur-sm p-8 rounded-xl transition duration-300">
+                        <div class="w-14 h-14 bg-blue-500 bg-opacity-10 rounded-lg flex items-center justify-center mb-6">
                             <i class="fas fa-tachometer-alt text-blue-400 text-2xl"></i>
                         </div>
                         <h3 class="text-xl font-semibold mb-3">Edge Processing</h3>
@@ -592,154 +448,15 @@
             </div>
         </section>
 
-        <!-- Compliance Section -->
-        <section id="compliance" class="py-20 bg-slate-900 bg-opacity-50">
-            <div class="container mx-auto px-6">
-                <div class="text-center mb-16">
-                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Enterprise Compliance & Security</h2>
-                    <p class="max-w-2xl mx-auto text-gray-400">
-                        Built for regulated industries with zero compromise
-                    </p>
-                </div>
-
-                <div class="max-w-4xl mx-auto bg-slate-800 rounded-xl p-8">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                        <div>
-                            <h3 class="text-xl font-semibold mb-4 text-[#00f5d0]">Certifications</h3>
-                            <ul class="space-y-3 text-gray-300">
-                                <li class="flex items-start">
-                                    <i class="fas fa-check-circle text-[#00f5d0] mr-3 mt-1"></i>
-                                    <span>GDPR & CCPA Compliant</span>
-                                </li>
-                                <li class="flex items-start">
-                                    <i class="fas fa-check-circle text-[#00f5d0] mr-3 mt-1"></i>
-                                    <span>SOC 2 Type II (In Progress)</span>
-                                </li>
-                                <li class="flex items-start">
-                                    <i class="fas fa-check-circle text-[#00f5d0] mr-3 mt-1"></i>
-                                    <span>AWS Security Certified</span>
-                                </li>
-                                <li class="flex items-start">
-                                    <i class="fas fa-check-circle text-[#00f5d0] mr-3 mt-1"></i>
-                                    <span>HIPAA Compliant Deployment</span>
-                                </li>
-                            </ul>
-                        </div>
-
-                        <div>
-                            <h3 class="text-xl font-semibold mb-4 text-[#00f5d0]">Security Features</h3>
-                            <ul class="space-y-3 text-gray-300">
-                                <li class="flex items-start">
-                                    <i class="fas fa-check-circle text-[#00f5d0] mr-3 mt-1"></i>
-                                    <span>End-to-End Encryption</span>
-                                </li>
-                                <li class="flex items-start">
-                                    <i class="fas fa-check-circle text-[#00f5d0] mr-3 mt-1"></i>
-                                    <span>On-Premise Data Processing</span>
-                                </li>
-                                <li class="flex items-start">
-                                    <i class="fas fa-check-circle text-[#00f5d0] mr-3 mt-1"></i>
-                                    <span>Zero Data Retention Policy</span>
-                                </li>
-                                <li class="flex items-start">
-                                    <i class="fas fa-check-circle text-[#00f5d0] mr-3 mt-1"></i>
-                                    <span>Penetration Tested Quarterly</span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    
-                    <div class="mt-8 pt-8 border-t border-slate-700">
-                        <div class="flex flex-col md:flex-row justify-between items-center">
-                            <div>
-                                <h3 class="text-xl font-semibold mb-2">Compliance Roadmap</h3>
-                                <p class="text-gray-400">
-                                    ISO 27001 • NIST CSF • FedRAMP • FIPS 140-2
-                                </p>
-                            </div>
-                            <button class="mt-4 md:mt-0 gradient-btn text-white px-6 py-2 rounded-full font-medium">
-                                Request Security Dossier
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Testimonials Section -->
-        <section class="py-20">
-            <div class="container mx-auto px-6">
-                <div class="text-center mb-16">
-                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Trusted by Security Teams</h2>
-                    <p class="max-w-2xl mx-auto text-gray-400">
-                        What Fortune 500 security directors say
-                    </p>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-                    <div class="testimonial-card">
-                        <div class="flex items-center mb-4">
-                            <div class="w-12 h-12 rounded-full bg-slate-700 mr-4"></div>
-                            <div>
-                                <h4 class="font-bold">Michael Rodriguez</h4>
-                                <p class="text-sm text-gray-400">Global Security Director, Retail Chain</p>
-                            </div>
-                        </div>
-                        <p class="text-gray-300">
-                            "We reduced shrinkage by 47% in the first quarter. Eagle Eye paid for itself in 28 days. The AI caught theft patterns our human teams had missed for years."
-                        </p>
-                        <div class="mt-4 flex items-center">
-                            <div class="text-yellow-400 mr-2">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                            </div>
-                            <span class="text-sm">ROI: 387% in Year 1</span>
-                        </div>
-                    </div>
-                    
-                    <div class="testimonial-card">
-                        <div class="flex items-center mb-4">
-                            <div class="w-12 h-12 rounded-full bg-slate-700 mr-4"></div>
-                            <div>
-                                <h4 class="font-bold">Sarah Johnson</h4>
-                                <p class="text-sm text-gray-400">CISO, Tech Campus</p>
-                            </div>
-                        </div>
-                        <p class="text-gray-300">
-                            "We've prevented 3 critical incidents before they happened. The predictive analytics identified patterns that led us to adjust patrol routes. This isn't security - it's insurance."
-                        </p>
-                        <div class="mt-4 flex items-center">
-                            <div class="text-yellow-400 mr-2">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                            </div>
-                            <span class="text-sm">63% Fewer Incidents</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
 
         <!-- Pricing Section -->
         <section id="pricing" class="py-20 bg-slate-900 bg-opacity-50">
             <div class="container mx-auto px-6">
                 <div class="text-center mb-16">
-                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Security That Pays For Itself</h2>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Transparent Pricing</h2>
                     <p class="max-w-2xl mx-auto text-gray-400">
-                        Average 287% ROI in first year across deployments
+                        Scale your security as you grow
                     </p>
-                    <div class="mt-6">
-                        <span class="bg-slate-800 px-4 py-2 rounded-full text-sm">
-                            <i class="fas fa-shield-alt mr-2 text-[#00f5d0]"></i> 
-                            30-Day Money-Back ROI Guarantee
-                        </span>
-                    </div>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
@@ -750,7 +467,7 @@
                             <span class="text-3xl font-bold">$99</span>
                             <span class="text-gray-400">/month</span>
                         </div>
-                        <p class="text-gray-400 mb-6">Upto 10 AI-enabled cameras</p>
+                        <p class="text-gray-400 mb-6">Up to 10 AI-enabled cameras</p>
                         <ul class="space-y-3 mb-8 text-gray-300">
                             <li class="flex items-center">
                                 <i class="fas fa-check text-[#00f5d0] mr-3"></i>
@@ -768,30 +485,14 @@
                                 <i class="fas fa-check text-[#00f5d0] mr-3"></i>
                                 <span>Standard analytics</span>
                             </li>
-                            <li class="flex items-center">
-                                <i class="fas fa-times text-gray-600 mr-3"></i>
-                                <span class="text-gray-600">Custom AI models</span>
-                            </li>
-                            <li class="flex items-center">
-                                <i class="fas fa-times text-gray-600 mr-3"></i>
-                                <span class="text-gray-600">Predictive analytics</span>
-                            </li>
                         </ul>
-                        <div class="text-center mb-4">
-                            <span class="text-sm text-gray-400">Minimum 5 cameras</span>
-                        </div>
                         <button class="w-full border border-blue-400 text-blue-400 px-8 py-3 rounded-full font-medium hover:bg-blue-400 hover:bg-opacity-10 transition contact-btn">
                             Start Trial
                         </button>
                     </div>
 
                     <!-- Professional Plan -->
-                    <div class="bg-slate-800 bg-opacity-50 backdrop-blur-sm p-8 rounded-xl relative glow-effect">
-                        <div class="absolute -top-3 left-1/2 transform -translate-x-1/2">
-                            <span class="bg-gradient-to-r from-[#00a1d1] to-[#00f5d0] text-white px-4 py-1 rounded-full text-sm font-medium">
-                                Most Popular
-                            </span>
-                        </div>
+                    <div class="bg-slate-800 bg-opacity-50 backdrop-blur-sm p-8 rounded-xl">
                         <h3 class="text-xl font-semibold mb-4">Professional</h3>
                         <div class="mb-6">
                             <span class="text-3xl font-bold">$499</span>
@@ -801,7 +502,7 @@
                         <ul class="space-y-3 mb-8 text-gray-300">
                             <li class="flex items-center">
                                 <i class="fas fa-check text-[#00f5d0] mr-3"></i>
-                                <span>All Rapid Response features</span>
+                                <span>All Basic features</span>
                             </li>
                             <li class="flex items-center">
                                 <i class="fas fa-check text-[#00f5d0] mr-3"></i>
@@ -815,18 +516,7 @@
                                 <i class="fas fa-check text-[#00f5d0] mr-3"></i>
                                 <span>30-day video retention</span>
                             </li>
-                            <li class="flex items-center">
-                                <i class="fas fa-check text-[#00f5d0] mr-3"></i>
-                                <span>Biometric watchlists</span>
-                            </li>
-                            <li class="flex items-center">
-                                <i class="fas fa-check text-[#00f5d0] mr-3"></i>
-                                <span>Priority support</span>
-                            </li>
                         </ul>
-                        <div class="text-center mb-4">
-                            <span class="text-sm text-[#00f5d0]">Save 15% with annual billing</span>
-                        </div>
                         <button class="w-full gradient-btn text-white px-8 py-3 rounded-full font-medium contact-btn">
                             Get Custom Demo
                         </button>
@@ -836,13 +526,13 @@
                     <div class="bg-slate-800 bg-opacity-50 backdrop-blur-sm p-8 rounded-xl">
                         <h3 class="text-xl font-semibold mb-4">Enterprise</h3>
                         <div class="mb-6">
-                            <span class="text-3xl font-bold">Custom Pricing</span>
+                            <span class="text-3xl font-bold">Custom</span>
                         </div>
                         <p class="text-gray-400 mb-6">For 100+ camera deployments</p>
                         <ul class="space-y-3 mb-8 text-gray-300">
                             <li class="flex items-center">
                                 <i class="fas fa-check text-[#00f5d0] mr-3"></i>
-                                <span>All Enterprise Shield features</span>
+                                <span>All Professional features</span>
                             </li>
                             <li class="flex items-center">
                                 <i class="fas fa-check text-[#00f5d0] mr-3"></i>
@@ -850,24 +540,13 @@
                             </li>
                             <li class="flex items-center">
                                 <i class="fas fa-check text-[#00f5d0] mr-3"></i>
-                                <span>Dedicated threat modeling team</span>
+                                <span>Dedicated threat modeling</span>
                             </li>
                             <li class="flex items-center">
                                 <i class="fas fa-check text-[#00f5d0] mr-3"></i>
                                 <span>Unlimited video retention</span>
                             </li>
-                            <li class="flex items-center">
-                                <i class="fas fa-check text-[#00f5d0] mr-3"></i>
-                                <span>White-label reporting</span>
-                            </li>
-                            <li class="flex items-center">
-                                <i class="fas fa-check text-[#00f5d0] mr-3"></i>
-                                <span>24/7 dedicated support</span>
-                            </li>
                         </ul>
-                        <div class="text-center mb-4">
-                            <span class="text-sm text-[#00f5d0]">Volume discounts for 50+ cameras</span>
-                        </div>
                         <button class="w-full border border-blue-400 text-blue-400 px-8 py-3 rounded-full font-medium hover:bg-blue-400 hover:bg-opacity-10 transition contact-btn">
                             Contact Sales
                         </button>
@@ -877,7 +556,7 @@
                 <div class="mt-12 text-center">
                     <p class="max-w-2xl mx-auto text-gray-400">
                         <i class="fas fa-info-circle mr-2 text-[#00f5d0]"></i> 
-                        All plans include: 256-bit encryption, compliance reporting, and 99.99% uptime SLA
+                        All plans include: 256-bit encryption and 12/5 support.
                     </p>
                 </div>
             </div>
@@ -886,23 +565,23 @@
         <!-- CTA Section -->
         <section class="py-20 bg-gradient-to-r from-slate-900 to-blue-900">
             <div class="container mx-auto px-6 text-center">
-                <h2 class="text-3xl md:text-4xl font-bold mb-6">Stop Paying for Security, Start Earning From It</h2>
+                <h2 class="text-3xl md:text-4xl font-bold mb-6">Ready to Transform Your Security?</h2>
                 <p class="max-w-2xl mx-auto text-gray-300 mb-8">
-                    Join 142 enterprise clients who reduced security costs by 40-60% in the first year
+                    Join our early adopter program and help shape the future of AI surveillance.
                 </p>
                 
                 <div class="max-w-md mx-auto bg-slate-800 rounded-xl p-6 mb-10">
                     <div class="flex flex-col sm:flex-row justify-between items-center">
                         <div class="text-left mb-4 sm:mb-0">
-                            <div class="text-sm text-gray-400">SPECIAL OFFER</div>
+                            <div class="text-sm text-gray-400">FOUNDING PARTNER OFFER</div>
                             <div class="font-bold">Free 30-Day Pilot + Setup</div>
                         </div>
                         <button class="gradient-btn text-white px-6 py-3 rounded-full font-medium contact-btn">
-                            Claim Your Pilot <i class="fas fa-arrow-right ml-2"></i>
+                            Apply Now <i class="fas fa-arrow-right ml-2"></i>
                         </button>
                     </div>
                     <div class="mt-4 text-sm text-gray-400">
-                        <i class="fas fa-user-shield mr-2"></i> Limited to first 5 requests this week
+                        <i class="fas fa-flask mr-2"></i> Currently onboarding select pilot partners
                     </div>
                 </div>
                 
@@ -932,19 +611,13 @@
                             <h4 class="text-lg font-semibold mb-4">Product</h4>
                             <ul class="space-y-2">
                                 <li>
-                                    <a href="#features" class="text-gray-400 hover:text-blue-400 transition"
-                                        >Features</a
-                                    >
+                                    <a href="#features" class="text-gray-400 hover:text-blue-400 transition">Features</a>
                                 </li>
                                 <li>
-                                    <a href="#pricing" class="text-gray-400 hover:text-blue-400 transition"
-                                        >Pricing</a
-                                    >
+                                    <a href="#pricing" class="text-gray-400 hover:text-blue-400 transition">Pricing</a>
                                 </li>
                                 <li>
-                                    <a href="#" class="text-gray-400 hover:text-blue-400 transition"
-                                        >Security</a
-                                    >
+                                    <a href="#" class="text-gray-400 hover:text-blue-400 transition">Security</a>
                                 </li>
                             </ul>
                         </div>
@@ -952,60 +625,40 @@
                             <h4 class="text-lg font-semibold mb-4">Resources</h4>
                             <ul class="space-y-2">
                                 <li>
-                                    <a href="#" class="text-gray-400 hover:text-blue-400 transition"
-                                        >Case Studies</a
-                                    >
+                                    <a href="#" class="text-gray-400 hover:text-blue-400 transition">Documentation</a>
                                 </li>
                                 <li>
-                                    <a href="#" class="text-gray-400 hover:text-blue-400 transition"
-                                        >ROI Calculator</a
-                                    >
+                                    <a href="#" class="text-gray-400 hover:text-blue-400 transition">ROI Calculator</a>
                                 </li>
                                 <li>
-                                    <a href="#" class="text-gray-400 hover:text-blue-400 transition"
-                                        >Compliance</a
-                                    >
+                                    <a href="#" class="text-gray-400 hover:text-blue-400 transition">Compliance</a>
                                 </li>
                             </ul>
                         </div>
                         <div>
-                            <h4 class="text-lg font-semibold mb-4">Enterprise</h4>
+                            <h4 class="text-lg font-semibold mb-4">Company</h4>
                             <ul class="space-y-2">
                                 <li>
-                                    <a href="#" class="text-gray-400 hover:text-blue-400 transition"
-                                        >Custom Solutions</a
-                                    >
+                                    <a href="#" class="text-gray-400 hover:text-blue-400 transition">About</a>
                                 </li>
                                 <li>
-                                    <a href="#" class="text-gray-400 hover:text-blue-400 transition"
-                                        >Government</a
-                                    >
+                                    <a href="#" class="text-gray-400 hover:text-blue-400 transition">Careers</a>
                                 </li>
                                 <li>
-                                    <a href="#" class="text-gray-400 hover:text-blue-400 transition"
-                                        >Partner Program</a
-                                    >
+                                    <a href="#" class="text-gray-400 hover:text-blue-400 transition">Contact</a>
                                 </li>
                             </ul>
                         </div>
                     </div>
                 </div>
-                <div
-                    class="border-t border-slate-700 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center"
-                >
+                <div class="border-t border-slate-700 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
                     <p class="text-gray-500 mb-4 md:mb-0">
                         &copy; 2023 Eagle Eye Systems. All rights reserved.
                     </p>
                     <div class="flex space-x-6">
-                        <a href="#" class="text-gray-400 hover:text-blue-400 transition text-xl"
-                            ><i class="fab fa-twitter"></i
-                        ></a>
-                        <a href="#" class="text-gray-400 hover:text-blue-400 transition text-xl"
-                            ><i class="fab fa-linkedin"></i
-                        ></a>
-                        <a href="#" class="text-gray-400 hover:text-blue-400 transition text-xl"
-                            ><i class="fab fa-youtube"></i
-                        ></a>
+                        <a href="#" class="text-gray-400 hover:text-blue-400 transition text-xl"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-blue-400 transition text-xl"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-blue-400 transition text-xl"><i class="fab fa-youtube"></i></a>
                     </div>
                 </div>
             </div>
@@ -1037,11 +690,6 @@
                 button.addEventListener("click", () => {
                     document.getElementById("contact").scrollIntoView({ behavior: "smooth" });
                 });
-            });
-
-            // Learn More button scroll to features
-            document.querySelector(".features-btn").addEventListener("click", () => {
-                document.getElementById("features").scrollIntoView({ behavior: "smooth" });
             });
 
             // Back to top button
@@ -1092,51 +740,9 @@
                 });
             });
 
-            // ROI Calculator
-            const cameraSlider = document.getElementById("camera-slider");
-            const cameraValue = document.getElementById("camera-value");
-            const monthlyLoss = document.getElementById("monthly-loss");
-            const savingsDisplay = document.getElementById("savings");
-            
-            function calculateSavings() {
-                const cameras = parseInt(cameraSlider.value);
-                const loss = parseInt(monthlyLoss.value) || 15000;
-                const savings = Math.round(loss * 0.4 * (cameras / 10));
-                savingsDisplay.textContent = "$" + savings.toLocaleString();
-            }
-            
-            cameraSlider.addEventListener("input", () => {
-                cameraValue.textContent = cameraSlider.value;
-                calculateSavings();
-            });
-            
-            monthlyLoss.addEventListener("input", calculateSavings);
-            
-            // Initialize
-            calculateSavings();
-            
-            // Countdown Timer
-            function updateCountdown() {
-                const now = new Date();
-                const endOfDay = new Date();
-                endOfDay.setHours(23,59,59,999); // Set to end of day
-                
-                const diff = endOfDay - now;
-                
-                const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-                
-                document.getElementById("countdown").textContent = 
-                    `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-            }
-            
-            setInterval(updateCountdown, 1000);
-            updateCountdown();
-            
             // Live chat interaction
             document.querySelector(".live-chat").addEventListener("click", function() {
-                alert("Security specialist available now. How can we assist you?");
+                alert("Our security specialists are available to discuss your needs.");
             });
         </script>
     </body>
