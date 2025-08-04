@@ -114,6 +114,48 @@
                 70% { box-shadow: 0 0 0 15px rgba(0, 245, 208, 0); }
                 100% { box-shadow: 0 0 0 0 rgba(0, 245, 208, 0); }
             }
+            /* Carousel Animations */
+            @keyframes slideRight {
+                0% { transform: translateX(0); }
+                100% { transform: translateX(-50%); }
+            }
+
+            @keyframes slideLeft {
+                0% { transform: translateX(-50%); }
+                100% { transform: translateX(0); }
+            }
+
+            .carousel-row {
+                display: flex;
+                gap: 20px;
+                width: max-content;
+                animation-duration: 40s; /* Changed from 60s to 40s for faster speed */
+                animation-timing-function: linear;
+                animation-iteration-count: infinite;
+                white-space: nowrap;
+            }
+
+            .slide-right {
+                animation-name: slideRight;
+            }
+
+            .slide-left {
+                animation-name: slideLeft;
+            }
+
+            .carousel-row:hover {
+                animation-play-state: paused;
+            }
+
+            .solution-card {
+                min-width: 300px;
+                background: rgba(30, 41, 59, 0.5);
+                padding: 20px;
+                border-radius: 12px;
+                backdrop-filter: blur(10px);
+                border: 1px solid rgba(0, 245, 208, 0.1);
+                flex-shrink: 0;
+            }
         </style>
     </head>
     <body class="text-gray-300 min-h-screen">
@@ -235,7 +277,337 @@
                 </div>
             </div>
         </section>
+        <!-- Solutions Carousel -->
+        <section class="py-20 overflow-hidden">
+            <div class="container mx-auto px-6 mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-4">
+                    <i class="fas fa-cogs text-[#00f5d0] mr-3"></i> Our AI Solutions
+                </h2>
+                <p class="text-center text-gray-400 max-w-2xl mx-auto">
+                    Comprehensive security intelligence across every scenario
+                </p>
+            </div>
+            
+            <div class="space-y-8">
+                <!-- Row 1 - Slides Right -->
+                <div class="carousel-row slide-right">
+                    <!-- Duplicate content to make it appear infinite -->
+                    <div class="solution-card">
+                        <i class="fas fa-user-check text-[#00f5d0] text-2xl mb-3"></i>
+                        <h3 class="text-lg font-semibold mb-2">Face Recognition</h3>
+                        <p class="text-gray-400 text-sm">99.8% accuracy biometric identification</p>
+                    </div>
+                    <div class="solution-card">
+                        <i class="fas fa-shield-alt text-[#00f5d0] text-2xl mb-3"></i>
+                        <h3 class="text-lg font-semibold mb-2">Weapon Detection</h3>
+                        <p class="text-gray-400 text-sm">Real-time gun & knife identification</p>
+                    </div>
+                    <div class="solution-card">
+                        <i class="fas fa-warehouse text-[#00f5d0] text-2xl mb-3"></i>
+                        <h3 class="text-lg font-semibold mb-2">Warehouse Security</h3>
+                        <p class="text-gray-400 text-sm">Inventory monitoring & theft prevention</p>
+                    </div>
+                    <div class="solution-card">
+                        <i class="fas fa-industry text-[#00f5d0] text-2xl mb-3"></i>
+                        <h3 class="text-lg font-semibold mb-2">Manufacturing</h3>
+                        <p class="text-gray-400 text-sm">Production line safety monitoring</p>
+                    </div>
+                    <div class="solution-card">
+                        <i class="fas fa-heartbeat text-[#00f5d0] text-2xl mb-3"></i>
+                        <h3 class="text-lg font-semibold mb-2">Healthcare Security</h3>
+                        <p class="text-gray-400 text-sm">Patient & staff safety monitoring</p>
+                    </div>
+                    <div class="solution-card">
+                        <i class="fas fa-graduation-cap text-[#00f5d0] text-2xl mb-3"></i>
+                        <h3 class="text-lg font-semibold mb-2">Education Security</h3>
+                        <p class="text-gray-400 text-sm">Campus safety & access control</p>
+                    </div>
+                    <div class="solution-card">
+                        <i class="fas fa-leaf text-[#00f5d0] text-2xl mb-3"></i>
+                        <h3 class="text-lg font-semibold mb-2">Cannabis Security</h3>
+                        <p class="text-gray-400 text-sm">Compliance & inventory protection</p>
+                    </div>
+                    <div class="solution-card">
+                        <i class="fas fa-city text-[#00f5d0] text-2xl mb-3"></i>
+                        <h3 class="text-lg font-semibold mb-2">Smart Cities</h3>
+                        <p class="text-gray-400 text-sm">Urban surveillance & traffic monitoring</p>
+                    </div>
+                    <div class="solution-card">
+                        <i class="fas fa-church text-[#00f5d0] text-2xl mb-3"></i>
+                        <h3 class="text-lg font-semibold mb-2">Houses of Worship</h3>
+                        <p class="text-gray-400 text-sm">Community safety & crowd management</p>
+                    </div>
+                    <div class="solution-card">
+                        <i class="fas fa-search text-[#00f5d0] text-2xl mb-3"></i>
+                        <h3 class="text-lg font-semibold mb-2">AI Search</h3>
+                        <p class="text-gray-400 text-sm">Find people/objects across footage</p>
+                    </div>
+                    <!-- Duplicate the same content again -->
+                    <div class="solution-card">
+                        <i class="fas fa-user-check text-[#00f5d0] text-2xl mb-3"></i>
+                        <h3 class="text-lg font-semibold mb-2">Face Recognition</h3>
+                        <p class="text-gray-400 text-sm">99.8% accuracy biometric identification</p>
+                    </div>
+                    <div class="solution-card">
+                        <i class="fas fa-shield-alt text-[#00f5d0] text-2xl mb-3"></i>
+                        <h3 class="text-lg font-semibold mb-2">Weapon Detection</h3>
+                        <p class="text-gray-400 text-sm">Real-time gun & knife identification</p>
+                    </div>
+                    <div class="solution-card">
+                        <i class="fas fa-warehouse text-[#00f5d0] text-2xl mb-3"></i>
+                        <h3 class="text-lg font-semibold mb-2">Warehouse Security</h3>
+                        <p class="text-gray-400 text-sm">Inventory monitoring & theft prevention</p>
+                    </div>
+                    <div class="solution-card">
+                        <i class="fas fa-industry text-[#00f5d0] text-2xl mb-3"></i>
+                        <h3 class="text-lg font-semibold mb-2">Manufacturing</h3>
+                        <p class="text-gray-400 text-sm">Production line safety monitoring</p>
+                    </div>
+                    <div class="solution-card">
+                        <i class="fas fa-heartbeat text-[#00f5d0] text-2xl mb-3"></i>
+                        <h3 class="text-lg font-semibold mb-2">Healthcare Security</h3>
+                        <p class="text-gray-400 text-sm">Patient & staff safety monitoring</p>
+                    </div>
+                    <div class="solution-card">
+                        <i class="fas fa-graduation-cap text-[#00f5d0] text-2xl mb-3"></i>
+                        <h3 class="text-lg font-semibold mb-2">Education Security</h3>
+                        <p class="text-gray-400 text-sm">Campus safety & access control</p>
+                    </div>
+                    <div class="solution-card">
+                        <i class="fas fa-leaf text-[#00f5d0] text-2xl mb-3"></i>
+                        <h3 class="text-lg font-semibold mb-2">Cannabis Security</h3>
+                        <p class="text-gray-400 text-sm">Compliance & inventory protection</p>
+                    </div>
+                    <div class="solution-card">
+                        <i class="fas fa-city text-[#00f5d0] text-2xl mb-3"></i>
+                        <h3 class="text-lg font-semibold mb-2">Smart Cities</h3>
+                        <p class="text-gray-400 text-sm">Urban surveillance & traffic monitoring</p>
+                    </div>
+                    <div class="solution-card">
+                        <i class="fas fa-church text-[#00f5d0] text-2xl mb-3"></i>
+                        <h3 class="text-lg font-semibold mb-2">Houses of Worship</h3>
+                        <p class="text-gray-400 text-sm">Community safety & crowd management</p>
+                    </div>
+                    <div class="solution-card">
+                        <i class="fas fa-search text-[#00f5d0] text-2xl mb-3"></i>
+                        <h3 class="text-lg font-semibold mb-2">AI Search</h3>
+                        <p class="text-gray-400 text-sm">Find people/objects across footage</p>
+                    </div>
+                </div>
 
+                <!-- Row 2 - Slides Left -->
+                <div class="carousel-row slide-left">
+                    <!-- Duplicate content to make it appear infinite -->
+                    <div class="solution-card">
+                        <i class="fas fa-clock text-[#00f5d0] text-2xl mb-3"></i>
+                        <h3 class="text-lg font-semibold mb-2">Auto Attendance</h3>
+                        <p class="text-gray-400 text-sm">Contactless employee tracking</p>
+                    </div>
+                    <div class="solution-card">
+                        <i class="fas fa-users text-[#00f5d0] text-2xl mb-3"></i>
+                        <h3 class="text-lg font-semibold mb-2">Crowd Analytics</h3>
+                        <p class="text-gray-400 text-sm">Density monitoring & flow analysis</p>
+                    </div>
+                    <div class="solution-card">
+                        <i class="fas fa-chart-line text-[#00f5d0] text-2xl mb-3"></i>
+                        <h3 class="text-lg font-semibold mb-2">Productivity Alerts</h3>
+                        <p class="text-gray-400 text-sm">Workflow optimization insights</p>
+                    </div>
+                    <div class="solution-card">
+                        <i class="fas fa-moon text-[#00f5d0] text-2xl mb-3"></i>
+                        <h3 class="text-lg font-semibold mb-2">Night Vision AI</h3>
+                        <p class="text-gray-400 text-sm">24/7 low-light monitoring</p>
+                    </div>
+                    <div class="solution-card">
+                        <i class="fas fa-car text-[#00f5d0] text-2xl mb-3"></i>
+                        <h3 class="text-lg font-semibold mb-2">License Plate Recognition</h3>
+                        <p class="text-gray-400 text-sm">Vehicle identification & tracking</p>
+                    </div>
+                    <div class="solution-card">
+                        <i class="fas fa-user-friends text-[#00f5d0] text-2xl mb-3"></i>
+                        <h3 class="text-lg font-semibold mb-2">Facial Recognition</h3>
+                        <p class="text-gray-400 text-sm">Employee & visitor identification</p>
+                    </div>
+                    <div class="solution-card">
+                        <i class="fas fa-bell text-[#00f5d0] text-2xl mb-3"></i>
+                        <h3 class="text-lg font-semibold mb-2">Safety Alerts</h3>
+                        <p class="text-gray-400 text-sm">Real-time incident notifications</p>
+                    </div>
+                    <div class="solution-card">
+                        <i class="fas fa-solar-panel text-[#00f5d0] text-2xl mb-3"></i>
+                        <h3 class="text-lg font-semibold mb-2">Solar Surveillance</h3>
+                        <p class="text-gray-400 text-sm">Remote site monitoring solutions</p>
+                    </div>
+                    <div class="solution-card">
+                        <i class="fas fa-bus text-[#00f5d0] text-2xl mb-3"></i>
+                        <h3 class="text-lg font-semibold mb-2">School Bus Safety</h3>
+                        <p class="text-gray-400 text-sm">Student transportation monitoring</p>
+                    </div>
+                    <div class="solution-card">
+                        <i class="fas fa-exclamation-triangle text-[#00f5d0] text-2xl mb-3"></i>
+                        <h3 class="text-lg font-semibold mb-2">Accident Detection</h3>
+                        <p class="text-gray-400 text-sm">Workplace safety monitoring</p>
+                    </div>
+                    <!-- Duplicate the same content again -->
+                    <div class="solution-card">
+                        <i class="fas fa-clock text-[#00f5d0] text-2xl mb-3"></i>
+                        <h3 class="text-lg font-semibold mb-2">Auto Attendance</h3>
+                        <p class="text-gray-400 text-sm">Contactless employee tracking</p>
+                    </div>
+                    <div class="solution-card">
+                        <i class="fas fa-users text-[#00f5d0] text-2xl mb-3"></i>
+                        <h3 class="text-lg font-semibold mb-2">Crowd Analytics</h3>
+                        <p class="text-gray-400 text-sm">Density monitoring & flow analysis</p>
+                    </div>
+                    <div class="solution-card">
+                        <i class="fas fa-chart-line text-[#00f5d0] text-2xl mb-3"></i>
+                        <h3 class="text-lg font-semibold mb-2">Productivity Alerts</h3>
+                        <p class="text-gray-400 text-sm">Workflow optimization insights</p>
+                    </div>
+                    <div class="solution-card">
+                        <i class="fas fa-moon text-[#00f5d0] text-2xl mb-3"></i>
+                        <h3 class="text-lg font-semibold mb-2">Night Vision AI</h3>
+                        <p class="text-gray-400 text-sm">24/7 low-light monitoring</p>
+                    </div>
+                    <div class="solution-card">
+                        <i class="fas fa-car text-[#00f5d0] text-2xl mb-3"></i>
+                        <h3 class="text-lg font-semibold mb-2">License Plate Recognition</h3>
+                        <p class="text-gray-400 text-sm">Vehicle identification & tracking</p>
+                    </div>
+                    <div class="solution-card">
+                        <i class="fas fa-user-friends text-[#00f5d0] text-2xl mb-3"></i>
+                        <h3 class="text-lg font-semibold mb-2">Facial Recognition</h3>
+                        <p class="text-gray-400 text-sm">Employee & visitor identification</p>
+                    </div>
+                    <div class="solution-card">
+                        <i class="fas fa-bell text-[#00f5d0] text-2xl mb-3"></i>
+                        <h3 class="text-lg font-semibold mb-2">Safety Alerts</h3>
+                        <p class="text-gray-400 text-sm">Real-time incident notifications</p>
+                    </div>
+                    <div class="solution-card">
+                        <i class="fas fa-solar-panel text-[#00f5d0] text-2xl mb-3"></i>
+                        <h3 class="text-lg font-semibold mb-2">Solar Surveillance</h3>
+                        <p class="text-gray-400 text-sm">Remote site monitoring solutions</p>
+                    </div>
+                    <div class="solution-card">
+                        <i class="fas fa-bus text-[#00f5d0] text-2xl mb-3"></i>
+                        <h3 class="text-lg font-semibold mb-2">School Bus Safety</h3>
+                        <p class="text-gray-400 text-sm">Student transportation monitoring</p>
+                    </div>
+                    <div class="solution-card">
+                        <i class="fas fa-exclamation-triangle text-[#00f5d0] text-2xl mb-3"></i>
+                        <h3 class="text-lg font-semibold mb-2">Accident Detection</h3>
+                        <p class="text-gray-400 text-sm">Workplace safety monitoring</p>
+                    </div>
+                </div>
+
+                <!-- Row 3 - Slides Right -->
+                <div class="carousel-row slide-right">
+                    <!-- Duplicate content to make it appear infinite -->
+                    <div class="solution-card">
+                        <i class="fas fa-door-open text-[#00f5d0] text-2xl mb-3"></i>
+                        <h3 class="text-lg font-semibold mb-2">Intrusion Detection</h3>
+                        <p class="text-gray-400 text-sm">Perimeter breach alerts</p>
+                    </div>
+                    <div class="solution-card">
+                        <i class="fas fa-id-card text-[#00f5d0] text-2xl mb-3"></i>
+                        <h3 class="text-lg font-semibold mb-2">Access Control</h3>
+                        <p class="text-gray-400 text-sm">Smart entry management</p>
+                    </div>
+                    <div class="solution-card">
+                        <i class="fas fa-fire text-[#00f5d0] text-2xl mb-3"></i>
+                        <h3 class="text-lg font-semibold mb-2">Fire Detection</h3>
+                        <p class="text-gray-400 text-sm">Early smoke & flame recognition</p>
+                    </div>
+                    <div class="solution-card">
+                        <i class="fas fa-walking text-[#00f5d0] text-2xl mb-3"></i>
+                        <h3 class="text-lg font-semibold mb-2">Behavior Analysis</h3>
+                        <p class="text-gray-400 text-sm">Suspicious activity detection</p>
+                    </div>
+                    <div class="solution-card">
+                        <i class="fas fa-mobile-alt text-[#00f5d0] text-2xl mb-3"></i>
+                        <h3 class="text-lg font-semibold mb-2">Mobile Alerts</h3>
+                        <p class="text-gray-400 text-sm">Instant notifications anywhere</p>
+                    </div>
+                    <div class="solution-card">
+                        <i class="fas fa-cloud text-[#00f5d0] text-2xl mb-3"></i>
+                        <h3 class="text-lg font-semibold mb-2">Cloud Integration</h3>
+                        <p class="text-gray-400 text-sm">Scalable cloud deployment</p>
+                    </div>
+                    <div class="solution-card">
+                        <i class="fas fa-hard-hat text-[#00f5d0] text-2xl mb-3"></i>
+                        <h3 class="text-lg font-semibold mb-2">PPE Compliance</h3>
+                        <p class="text-gray-400 text-sm">Safety equipment monitoring</p>
+                    </div>
+                    <div class="solution-card">
+                        <i class="fas fa-running text-[#00f5d0] text-2xl mb-3"></i>
+                        <h3 class="text-lg font-semibold mb-2">Loitering Detection</h3>
+                        <p class="text-gray-400 text-sm">Unauthorized presence alerts</p>
+                    </div>
+                    <div class="solution-card">
+                        <i class="fas fa-fingerprint text-[#00f5d0] text-2xl mb-3"></i>
+                        <h3 class="text-lg font-semibold mb-2">Biometric Access</h3>
+                        <p class="text-gray-400 text-sm">Multi-factor authentication</p>
+                    </div>
+                    <div class="solution-card">
+                        <i class="fas fa-truck text-[#00f5d0] text-2xl mb-3"></i>
+                        <h3 class="text-lg font-semibold mb-2">Fleet Monitoring</h3>
+                        <p class="text-gray-400 text-sm">Vehicle & driver safety tracking</p>
+                    </div>
+                    <!-- Duplicate the same content again -->
+                    <div class="solution-card">
+                        <i class="fas fa-door-open text-[#00f5d0] text-2xl mb-3"></i>
+                        <h3 class="text-lg font-semibold mb-2">Intrusion Detection</h3>
+                        <p class="text-gray-400 text-sm">Perimeter breach alerts</p>
+                    </div>
+                    <div class="solution-card">
+                        <i class="fas fa-id-card text-[#00f5d0] text-2xl mb-3"></i>
+                        <h3 class="text-lg font-semibold mb-2">Access Control</h3>
+                        <p class="text-gray-400 text-sm">Smart entry management</p>
+                    </div>
+                    <div class="solution-card">
+                        <i class="fas fa-fire text-[#00f5d0] text-2xl mb-3"></i>
+                        <h3 class="text-lg font-semibold mb-2">Fire Detection</h3>
+                        <p class="text-gray-400 text-sm">Early smoke & flame recognition</p>
+                    </div>
+                    <div class="solution-card">
+                        <i class="fas fa-walking text-[#00f5d0] text-2xl mb-3"></i>
+                        <h3 class="text-lg font-semibold mb-2">Behavior Analysis</h3>
+                        <p class="text-gray-400 text-sm">Suspicious activity detection</p>
+                    </div>
+                    <div class="solution-card">
+                        <i class="fas fa-mobile-alt text-[#00f5d0] text-2xl mb-3"></i>
+                        <h3 class="text-lg font-semibold mb-2">Mobile Alerts</h3>
+                        <p class="text-gray-400 text-sm">Instant notifications anywhere</p>
+                    </div>
+                    <div class="solution-card">
+                        <i class="fas fa-cloud text-[#00f5d0] text-2xl mb-3"></i>
+                        <h3 class="text-lg font-semibold mb-2">Cloud Integration</h3>
+                        <p class="text-gray-400 text-sm">Scalable cloud deployment</p>
+                    </div>
+                    <div class="solution-card">
+                        <i class="fas fa-hard-hat text-[#00f5d0] text-2xl mb-3"></i>
+                        <h3 class="text-lg font-semibold mb-2">PPE Compliance</h3>
+                        <p class="text-gray-400 text-sm">Safety equipment monitoring</p>
+                    </div>
+                    <div class="solution-card">
+                        <i class="fas fa-running text-[#00f5d0] text-2xl mb-3"></i>
+                        <h3 class="text-lg font-semibold mb-2">Loitering Detection</h3>
+                        <p class="text-gray-400 text-sm">Unauthorized presence alerts</p>
+                    </div>
+                    <div class="solution-card">
+                        <i class="fas fa-fingerprint text-[#00f5d0] text-2xl mb-3"></i>
+                        <h3 class="text-lg font-semibold mb-2">Biometric Access</h3>
+                        <p class="text-gray-400 text-sm">Multi-factor authentication</p>
+                    </div>
+                    <div class="solution-card">
+                        <i class="fas fa-truck text-[#00f5d0] text-2xl mb-3"></i>
+                        <h3 class="text-lg font-semibold mb-2">Fleet Monitoring</h3>
+                        <p class="text-gray-400 text-sm">Vehicle & driver safety tracking</p>
+                    </div>
+                </div>
+            </div>
+        </section>
         <!-- Why Choose Us Section -->
         <section id="why-us" class="py-20 bg-slate-900 bg-opacity-50">
             <div class="container mx-auto px-6 text-center">
