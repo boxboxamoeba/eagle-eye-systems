@@ -13,24 +13,28 @@ body {
 }
 
 /* Ensures perfect vertical alignment */
-nav a, footer a {
+nav a,
+footer a {
     display: inline-flex;
     align-items: center;
 }
 
 /* Precise height matching */
-nav img, footer img {
+nav img,
+footer img {
     height: 1.5em; /* Exactly matches text-2xl line-height */
     width: auto;
     margin-top: -0.1em; /* Fine-tune vertical alignment if needed */
 }
 
 /* Hover effects */
-nav a:hover, footer a:hover {
+nav a:hover,
+footer a:hover {
     transform: scale(1.03);
 }
 
-nav a:hover img, footer a:hover img {
+nav a:hover img,
+footer a:hover img {
     filter: drop-shadow(0 0 6px rgba(0, 245, 208, 0.4));
 }
 .gradient-text {

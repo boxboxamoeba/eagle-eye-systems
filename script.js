@@ -129,13 +129,11 @@ function calculatePrice() {
 
     // Update display
     document.getElementById("display-cameras").textContent = cameraCount;
-    document.getElementById("cameras-cost").textContent = `₹${cameraCost.toLocaleString(
+    document.getElementById("cameras-cost").textContent = `₹${cameraCost.toLocaleString("en-IN")}`;
+    document.getElementById("ai-costs-container").innerHTML = aiCostsHtml;
+    document.getElementById("total-cost").textContent = `₹${(cameraCost + aiCost).toLocaleString(
         "en-IN"
     )}`;
-    document.getElementById("ai-costs-container").innerHTML = aiCostsHtml;
-    document.getElementById("total-cost").textContent = `₹${(
-        cameraCost + aiCost
-    ).toLocaleString("en-IN")}`;
 }
 
 function adjustCameraCount(change) {
