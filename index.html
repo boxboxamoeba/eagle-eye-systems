@@ -1,1129 +1,945 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
-        <meta
-            name="description"
-            content="Eagle Eye Analytics provides AI-powered CCTV analytics for advanced security solutions. Real-time threat detection and predictive analytics for enterprises."
-        />
-        <title>Eagle Eye Analytics | AI-Powered CCTV Analytics</title>
-        <script src="https://cdn.tailwindcss.com"></script>
-        <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-        />
-        <link rel="stylesheet" href="styles.css" />
-    </head>
-    <body class="text-gray-300 min-h-screen">
-        <!-- Sticky CTA -->
-        <div class="sticky-cta">
-            <div class="container mx-auto flex flex-col sm:flex-row items-center justify-between">
-                <div class="mb-3 sm:mb-0">
-                    <span class="text-[#00f5d0] font-bold"
-                        ><i class="fas fa-star mr-1"></i> EARLY ACCESS:</span
-                    >
-                    <span>Join our founding partner program</span>
-                </div>
-                <button
-                    class="gradient-btn text-white px-6 py-2 rounded-full font-medium"
-                    onclick="scrollToContact()"
-                >
-                    <i class="fas fa-paper-plane mr-2"></i> Apply Now
-                </button>
-            </div>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+    <meta name="description" content="Eagle Eye Analytics provides AI-powered CCTV analytics for advanced security solutions. Real-time threat detection and predictive analytics for enterprises." />
+    <title>Eagle Eye Analytics | AI-Powered CCTV Analytics</title>
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="https://cdn.tailwindcss.com" as="script">
+    <link rel="preload" href="styles.css" as="style">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" as="style">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style">
+    
+    <!-- Preconnect to external domains -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css" />
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="favicon.png">
+    
+    <!-- Preload hero image -->
+    <link rel="preload" href="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" as="image">
+</head>
+<body class="font-sans bg-gradient-to-b from-slate-900 to-slate-800">
+    <!-- Loading animation -->
+    <div id="loading" class="fixed inset-0 z-50 flex items-center justify-center bg-slate-900 transition-opacity duration-500">
+        <div class="relative w-24 h-24">
+            <div class="absolute inset-0 border-4 border-t-[#00f5d0] border-r-[#00a1d1] border-b-[#00f5d0] border-l-transparent rounded-full animate-spin"></div>
+            <img src="logo.png" alt="Loading" class="w-16 h-16 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
         </div>
+    </div>
 
-        <!-- Navigation -->
-        <nav class="container mx-auto px-6 py-6">
-            <div class="flex justify-between items-center">
-                <div class="flex items-center">
-                    <a
-                        href="#hero"
-                        class="flex items-center space-x-3 hover:scale-105 transition-transform duration-200"
-                    >
-                        <!-- Logo with exact text height matching -->
-                        <img
-                            src="logo.png"
-                            alt="Eagle Eye Analytics Logo"
-                            class="h-[1.5em] w-auto object-contain"
-                        />
-                        <!-- Text element -->
-                        <span class="text-2xl font-bold gradient-text">Eagle Eye Analytics</span>
-                    </a>
-                </div>
-                <div class="hidden md:flex space-x-8">
-                    <a href="#hero" class="nav-link"><i class="fas fa-home mr-1"></i> Home</a>
-                    <a href="#features" class="nav-link"
-                        ><i class="fas fa-list-alt mr-1"></i> Features</a
-                    >
-                    <a href="#pricing" class="nav-link"><i class="fas fa-tag mr-1"></i> Pricing</a>
-                    <a href="#contact" class="nav-link"
-                        ><i class="fas fa-envelope mr-1"></i> Contact</a
-                    >
-                </div>
-                <div class="hidden md:block">
-                    <button
-                        class="gradient-btn text-white px-8 py-3 rounded-full font-medium"
-                        onclick="scrollToContact()"
-                    >
-                        <i class="fas fa-desktop mr-2"></i> Get Demo
-                    </button>
-                </div>
-                <div class="md:hidden">
-                    <button
-                        id="menu-btn"
-                        class="text-2xl focus:outline-none"
-                        aria-label="Toggle menu"
-                    >
-                        <i class="fas fa-bars"></i>
-                    </button>
-                </div>
+    <!-- Sticky CTA -->
+    <div class="sticky-cta">
+        <div class="container mx-auto flex flex-col sm:flex-row items-center justify-between px-4">
+            <div class="mb-3 sm:mb-0 text-center sm:text-left">
+                <span class="text-[#00f5d0] font-medium animate-pulse">
+                    <i class="fas fa-star mr-1"></i> EARLY ACCESS:
+                </span>
+                <span>Join our founding partner program - Limited spots available!</span>
             </div>
-            <!-- Mobile Menu -->
-            <div id="mobile-menu" class="hidden md:hidden mt-4 space-y-3">
-                <a href="#hero" class="block nav-link mobile-nav"
-                    ><i class="fas fa-home mr-2"></i> Home</a
-                >
-                <a href="#features" class="block nav-link mobile-nav"
-                    ><i class="fas fa-list-alt mr-2"></i> Features</a
-                >
-                <a href="#pricing" class="block nav-link mobile-nav"
-                    ><i class="fas fa-tag mr-2"></i> Pricing</a
-                >
-                <a href="#contact" class="block nav-link mobile-nav"
-                    ><i class="fas fa-envelope mr-2"></i> Contact</a
-                >
-                <button
-                    class="gradient-btn text-white px-6 py-2 rounded-full font-medium w-full"
-                    onclick="scrollToContact()"
-                >
+            <button class="gradient-btn text-white px-6 py-2 rounded-full font-medium hover:scale-105 transition-transform" onclick="scrollToElement('contact')">
+                <i class="fas fa-paper-plane mr-2"></i> Apply Now
+            </button>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="container mx-auto px-6 py-6 sticky top-0 z-30 bg-slate-900 bg-opacity-90 backdrop-blur-sm">
+        <div class="flex justify-between items-center">
+            <div class="flex items-center">
+                <a href="#hero" class="flex items-center space-x-3 hover:scale-105 transition-transform duration-200 focus:outline-none focus:ring-2 focus:ring-[#00f5d0] rounded-lg">
+                    <img src="logo.png" alt="Eagle Eye Analytics Logo" class="h-[1.5em] w-auto object-contain" loading="eager">
+                    <span class="text-2xl font-bold gradient-text">Eagle Eye Analytics</span>
+                </a>
+            </div>
+            
+            <div class="hidden md:flex space-x-8 items-center">
+                <a href="#hero" class="nav-link"><i class="fas fa-home mr-1"></i> Home</a>
+                <a href="#features" class="nav-link"><i class="fas fa-list-alt mr-1"></i> Features</a>
+                <a href="#solutions" class="nav-link"><i class="fas fa-cogs mr-1"></i> Solutions</a>
+                <a href="#pricing" class="nav-link"><i class="fas fa-tag mr-1"></i> Pricing</a>
+                <a href="#testimonials" class="nav-link"><i class="fas fa-quote-left mr-1"></i> Testimonials</a>
+                <a href="#contact" class="nav-link"><i class="fas fa-envelope mr-1"></i> Contact</a>
+                
+                <button class="gradient-btn text-white px-6 py-2 rounded-full font-medium ml-4 hover:scale-105 transition-transform" onclick="scrollToElement('contact')">
                     <i class="fas fa-desktop mr-2"></i> Get Demo
                 </button>
             </div>
-        </nav>
+            
+            <button id="menu-btn" class="md:hidden text-2xl focus:outline-none p-2" aria-label="Toggle menu" aria-expanded="false">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden mt-4 space-y-3 bg-slate-800 rounded-lg p-4 shadow-xl">
+            <a href="#hero" class="block nav-link mobile-nav px-4 py-2 rounded hover:bg-slate-700">
+                <i class="fas fa-home mr-2"></i> Home
+            </a>
+            <a href="#features" class="block nav-link mobile-nav px-4 py-2 rounded hover:bg-slate-700">
+                <i class="fas fa-list-alt mr-2"></i> Features
+            </a>
+            <a href="#solutions" class="block nav-link mobile-nav px-4 py-2 rounded hover:bg-slate-700">
+                <i class="fas fa-cogs mr-2"></i> Solutions
+            </a>
+            <a href="#pricing" class="block nav-link mobile-nav px-4 py-2 rounded hover:bg-slate-700">
+                <i class="fas fa-tag mr-2"></i> Pricing
+            </a>
+            <a href="#testimonials" class="block nav-link mobile-nav px-4 py-2 rounded hover:bg-slate-700">
+                <i class="fas fa-quote-left mr-2"></i> Testimonials
+            </a>
+            <a href="#contact" class="block nav-link mobile-nav px-4 py-2 rounded hover:bg-slate-700">
+                <i class="fas fa-envelope mr-2"></i> Contact
+            </a>
+            <button class="gradient-btn text-white px-6 py-3 rounded-full font-medium w-full mt-2 hover:scale-105 transition-transform" onclick="scrollToElement('contact')">
+                <i class="fas fa-desktop mr-2"></i> Get Demo
+            </button>
+        </div>
+    </nav>
 
-        <!-- Hero Section -->
-        <section id="hero" class="container mx-auto px-6 py-20 md:py-32">
-            <div class="flex flex-col md:flex-row items-center">
-                <div class="md:w-1/2 mb-12 md:mb-0">
-                    <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight">
-                        <span class="gradient-text">Next-Gen AI Surveillance</span>
-                        <br />For Security Teams Who Innovate
-                    </h1>
-                    <p class="text-xl mb-8 text-gray-400">
-                        <i class="fas fa-rocket text-[#00f5d0] mr-2"></i> Join our early adopter
-                        program and be the first to deploy our threat-detection AI.
-                    </p>
-
-                    <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
-                        <button
-                            class="gradient-btn text-white px-8 py-3 rounded-full font-medium"
-                            onclick="scrollToContact()"
-                        >
-                            <i class="fas fa-play-circle mr-2"></i> Start Free Pilot
-                        </button>
-                        <button
-                            class="border border-blue-400 text-blue-400 px-8 py-3 rounded-full font-medium hover:bg-blue-400 hover:bg-opacity-10 transition"
-                            onclick="scrollToFeatures()"
-                        >
-                            <i class="fas fa-info-circle mr-2"></i> See How It Works
-                        </button>
-                    </div>
-
-                    <div class="mt-12 bg-slate-800 bg-opacity-50 p-6 rounded-xl">
-                        <h3 class="text-lg font-semibold mb-3 text-[#00f5d0]">
-                            <i class="fas fa-medal mr-2"></i> Early Access Benefits
-                        </h3>
-                        <ul class="space-y-2 text-gray-300">
-                            <li class="flex items-start">
-                                <i class="fas fa-check-circle text-[#00f5d0] mt-1 mr-2"></i>
-                                <span>1 month free access to all features</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-check-circle text-[#00f5d0] mt-1 mr-2"></i>
-                                <span>Lifetime 25% discount after pilot</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-check-circle text-[#00f5d0] mt-1 mr-2"></i>
-                                <span>Direct access to our engineering team</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="md:w-1/2 flex justify-center">
-                    <div class="relative w-full max-w-md">
-                        <div
-                            class="absolute -top-10 -left-10 w-32 h-32 bg-blue-500 rounded-full filter blur-3xl opacity-20"
-                        ></div>
-                        <div
-                            class="absolute -bottom-10 -right-10 w-32 h-32 bg-blue-400 rounded-full filter blur-3xl opacity-20"
-                        ></div>
-                        <div
-                            class="relative bg-slate-800 bg-opacity-50 backdrop-blur-sm rounded-2xl p-1 glow-effect"
-                        >
-                            <div
-                                class="absolute top-4 left-4 bg-red-600 text-white text-xs px-2 py-1 rounded animate-pulse"
-                            >
-                                <i class="fas fa-bolt mr-1"></i> DEMO
-                            </div>
-                            <img
-                                src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
-                                alt="Security Camera Analytics"
-                                class="rounded-xl w-full h-auto"
-                                loading="lazy"
-                            />
-                            <div
-                                class="absolute bottom-4 left-4 bg-black bg-opacity-70 px-3 py-2 rounded"
-                            >
-                                <div class="text-[#00f5d0] font-bold">
-                                    <i class="fas fa-exclamation-triangle mr-2"></i> ALERT:
-                                    Unauthorized Access Detected
-                                </div>
-                                <div class="text-xs">
-                                    <i class="far fa-clock mr-1"></i> Zone 4B • 2 seconds ago
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- Solutions Carousel -->
-        <section class="py-20 overflow-hidden">
-            <div class="container mx-auto px-6 mb-12">
-                <h2 class="text-3xl md:text-4xl font-bold text-center mb-4">
-                    <i class="fas fa-cogs text-[#00f5d0] mr-3"></i> Our AI Solutions
-                </h2>
-                <p class="text-center text-gray-400 max-w-2xl mx-auto">
-                    Comprehensive security intelligence across every scenario
-                </p>
-            </div>
-
-            <div class="space-y-8">
-                <!-- Row 1 - Slides Right -->
-                <div class="carousel-row slide-right">
-                    <!-- Duplicate content to make it appear infinite -->
-                    <div class="solution-card">
-                        <i class="fas fa-user-check text-[#00f5d0] text-2xl mb-3"></i>
-                        <h3 class="text-lg font-semibold mb-2">Face Recognition</h3>
-                        <p class="text-gray-400 text-sm">99.8% accuracy biometric identification</p>
-                    </div>
-                    <div class="solution-card">
-                        <i class="fas fa-shield-alt text-[#00f5d0] text-2xl mb-3"></i>
-                        <h3 class="text-lg font-semibold mb-2">Weapon Detection</h3>
-                        <p class="text-gray-400 text-sm">Real-time gun & knife identification</p>
-                    </div>
-                    <div class="solution-card">
-                        <i class="fas fa-warehouse text-[#00f5d0] text-2xl mb-3"></i>
-                        <h3 class="text-lg font-semibold mb-2">Warehouse Security</h3>
-                        <p class="text-gray-400 text-sm">Inventory monitoring & theft prevention</p>
-                    </div>
-                    <div class="solution-card">
-                        <i class="fas fa-industry text-[#00f5d0] text-2xl mb-3"></i>
-                        <h3 class="text-lg font-semibold mb-2">Manufacturing</h3>
-                        <p class="text-gray-400 text-sm">Production line safety monitoring</p>
-                    </div>
-                    <div class="solution-card">
-                        <i class="fas fa-heartbeat text-[#00f5d0] text-2xl mb-3"></i>
-                        <h3 class="text-lg font-semibold mb-2">Healthcare Security</h3>
-                        <p class="text-gray-400 text-sm">Patient & staff safety monitoring</p>
-                    </div>
-                    <div class="solution-card">
-                        <i class="fas fa-graduation-cap text-[#00f5d0] text-2xl mb-3"></i>
-                        <h3 class="text-lg font-semibold mb-2">Education Security</h3>
-                        <p class="text-gray-400 text-sm">Campus safety & access control</p>
-                    </div>
-                    <div class="solution-card">
-                        <i class="fas fa-leaf text-[#00f5d0] text-2xl mb-3"></i>
-                        <h3 class="text-lg font-semibold mb-2">Cannabis Security</h3>
-                        <p class="text-gray-400 text-sm">Compliance & inventory protection</p>
-                    </div>
-                    <div class="solution-card">
-                        <i class="fas fa-city text-[#00f5d0] text-2xl mb-3"></i>
-                        <h3 class="text-lg font-semibold mb-2">Smart Cities</h3>
-                        <p class="text-gray-400 text-sm">Urban surveillance & traffic monitoring</p>
-                    </div>
-                    <div class="solution-card">
-                        <i class="fas fa-church text-[#00f5d0] text-2xl mb-3"></i>
-                        <h3 class="text-lg font-semibold mb-2">Houses of Worship</h3>
-                        <p class="text-gray-400 text-sm">Community safety & crowd management</p>
-                    </div>
-                    <div class="solution-card">
-                        <i class="fas fa-search text-[#00f5d0] text-2xl mb-3"></i>
-                        <h3 class="text-lg font-semibold mb-2">AI Search</h3>
-                        <p class="text-gray-400 text-sm">Find people/objects across footage</p>
-                    </div>
-                    <!-- Duplicate the same content again -->
-                    <div class="solution-card">
-                        <i class="fas fa-user-check text-[#00f5d0] text-2xl mb-3"></i>
-                        <h3 class="text-lg font-semibold mb-2">Face Recognition</h3>
-                        <p class="text-gray-400 text-sm">99.8% accuracy biometric identification</p>
-                    </div>
-                    <div class="solution-card">
-                        <i class="fas fa-shield-alt text-[#00f5d0] text-2xl mb-3"></i>
-                        <h3 class="text-lg font-semibold mb-2">Weapon Detection</h3>
-                        <p class="text-gray-400 text-sm">Real-time gun & knife identification</p>
-                    </div>
-                    <div class="solution-card">
-                        <i class="fas fa-warehouse text-[#00f5d0] text-2xl mb-3"></i>
-                        <h3 class="text-lg font-semibold mb-2">Warehouse Security</h3>
-                        <p class="text-gray-400 text-sm">Inventory monitoring & theft prevention</p>
-                    </div>
-                    <div class="solution-card">
-                        <i class="fas fa-industry text-[#00f5d0] text-2xl mb-3"></i>
-                        <h3 class="text-lg font-semibold mb-2">Manufacturing</h3>
-                        <p class="text-gray-400 text-sm">Production line safety monitoring</p>
-                    </div>
-                    <div class="solution-card">
-                        <i class="fas fa-heartbeat text-[#00f5d0] text-2xl mb-3"></i>
-                        <h3 class="text-lg font-semibold mb-2">Healthcare Security</h3>
-                        <p class="text-gray-400 text-sm">Patient & staff safety monitoring</p>
-                    </div>
-                    <div class="solution-card">
-                        <i class="fas fa-graduation-cap text-[#00f5d0] text-2xl mb-3"></i>
-                        <h3 class="text-lg font-semibold mb-2">Education Security</h3>
-                        <p class="text-gray-400 text-sm">Campus safety & access control</p>
-                    </div>
-                    <div class="solution-card">
-                        <i class="fas fa-leaf text-[#00f5d0] text-2xl mb-3"></i>
-                        <h3 class="text-lg font-semibold mb-2">Cannabis Security</h3>
-                        <p class="text-gray-400 text-sm">Compliance & inventory protection</p>
-                    </div>
-                    <div class="solution-card">
-                        <i class="fas fa-city text-[#00f5d0] text-2xl mb-3"></i>
-                        <h3 class="text-lg font-semibold mb-2">Smart Cities</h3>
-                        <p class="text-gray-400 text-sm">Urban surveillance & traffic monitoring</p>
-                    </div>
-                    <div class="solution-card">
-                        <i class="fas fa-church text-[#00f5d0] text-2xl mb-3"></i>
-                        <h3 class="text-lg font-semibold mb-2">Houses of Worship</h3>
-                        <p class="text-gray-400 text-sm">Community safety & crowd management</p>
-                    </div>
-                    <div class="solution-card">
-                        <i class="fas fa-search text-[#00f5d0] text-2xl mb-3"></i>
-                        <h3 class="text-lg font-semibold mb-2">AI Search</h3>
-                        <p class="text-gray-400 text-sm">Find people/objects across footage</p>
-                    </div>
-                </div>
-
-                <!-- Row 2 - Slides Left -->
-                <div class="carousel-row slide-left">
-                    <!-- Duplicate content to make it appear infinite -->
-                    <div class="solution-card">
-                        <i class="fas fa-clock text-[#00f5d0] text-2xl mb-3"></i>
-                        <h3 class="text-lg font-semibold mb-2">Auto Attendance</h3>
-                        <p class="text-gray-400 text-sm">Contactless employee tracking</p>
-                    </div>
-                    <div class="solution-card">
-                        <i class="fas fa-users text-[#00f5d0] text-2xl mb-3"></i>
-                        <h3 class="text-lg font-semibold mb-2">Crowd Analytics</h3>
-                        <p class="text-gray-400 text-sm">Density monitoring & flow analysis</p>
-                    </div>
-                    <div class="solution-card">
-                        <i class="fas fa-chart-line text-[#00f5d0] text-2xl mb-3"></i>
-                        <h3 class="text-lg font-semibold mb-2">Productivity Alerts</h3>
-                        <p class="text-gray-400 text-sm">Workflow optimization insights</p>
-                    </div>
-                    <div class="solution-card">
-                        <i class="fas fa-moon text-[#00f5d0] text-2xl mb-3"></i>
-                        <h3 class="text-lg font-semibold mb-2">Night Vision AI</h3>
-                        <p class="text-gray-400 text-sm">24/7 low-light monitoring</p>
-                    </div>
-                    <div class="solution-card">
-                        <i class="fas fa-car text-[#00f5d0] text-2xl mb-3"></i>
-                        <h3 class="text-lg font-semibold mb-2">License Plate Recognition</h3>
-                        <p class="text-gray-400 text-sm">Vehicle identification & tracking</p>
-                    </div>
-                    <div class="solution-card">
-                        <i class="fas fa-user-friends text-[#00f5d0] text-2xl mb-3"></i>
-                        <h3 class="text-lg font-semibold mb-2">Facial Recognition</h3>
-                        <p class="text-gray-400 text-sm">Employee & visitor identification</p>
-                    </div>
-                    <div class="solution-card">
-                        <i class="fas fa-bell text-[#00f5d0] text-2xl mb-3"></i>
-                        <h3 class="text-lg font-semibold mb-2">Safety Alerts</h3>
-                        <p class="text-gray-400 text-sm">Real-time incident notifications</p>
-                    </div>
-                    <div class="solution-card">
-                        <i class="fas fa-solar-panel text-[#00f5d0] text-2xl mb-3"></i>
-                        <h3 class="text-lg font-semibold mb-2">Solar Surveillance</h3>
-                        <p class="text-gray-400 text-sm">Remote site monitoring solutions</p>
-                    </div>
-                    <div class="solution-card">
-                        <i class="fas fa-bus text-[#00f5d0] text-2xl mb-3"></i>
-                        <h3 class="text-lg font-semibold mb-2">School Bus Safety</h3>
-                        <p class="text-gray-400 text-sm">Student transportation monitoring</p>
-                    </div>
-                    <div class="solution-card">
-                        <i class="fas fa-exclamation-triangle text-[#00f5d0] text-2xl mb-3"></i>
-                        <h3 class="text-lg font-semibold mb-2">Accident Detection</h3>
-                        <p class="text-gray-400 text-sm">Workplace safety monitoring</p>
-                    </div>
-                    <!-- Duplicate the same content again -->
-                    <div class="solution-card">
-                        <i class="fas fa-clock text-[#00f5d0] text-2xl mb-3"></i>
-                        <h3 class="text-lg font-semibold mb-2">Auto Attendance</h3>
-                        <p class="text-gray-400 text-sm">Contactless employee tracking</p>
-                    </div>
-                    <div class="solution-card">
-                        <i class="fas fa-users text-[#00f5d0] text-2xl mb-3"></i>
-                        <h3 class="text-lg font-semibold mb-2">Crowd Analytics</h3>
-                        <p class="text-gray-400 text-sm">Density monitoring & flow analysis</p>
-                    </div>
-                    <div class="solution-card">
-                        <i class="fas fa-chart-line text-[#00f5d0] text-2xl mb-3"></i>
-                        <h3 class="text-lg font-semibold mb-2">Productivity Alerts</h3>
-                        <p class="text-gray-400 text-sm">Workflow optimization insights</p>
-                    </div>
-                    <div class="solution-card">
-                        <i class="fas fa-moon text-[#00f5d0] text-2xl mb-3"></i>
-                        <h3 class="text-lg font-semibold mb-2">Night Vision AI</h3>
-                        <p class="text-gray-400 text-sm">24/7 low-light monitoring</p>
-                    </div>
-                    <div class="solution-card">
-                        <i class="fas fa-car text-[#00f5d0] text-2xl mb-3"></i>
-                        <h3 class="text-lg font-semibold mb-2">License Plate Recognition</h3>
-                        <p class="text-gray-400 text-sm">Vehicle identification & tracking</p>
-                    </div>
-                    <div class="solution-card">
-                        <i class="fas fa-user-friends text-[#00f5d0] text-2xl mb-3"></i>
-                        <h3 class="text-lg font-semibold mb-2">Facial Recognition</h3>
-                        <p class="text-gray-400 text-sm">Employee & visitor identification</p>
-                    </div>
-                    <div class="solution-card">
-                        <i class="fas fa-bell text-[#00f5d0] text-2xl mb-3"></i>
-                        <h3 class="text-lg font-semibold mb-2">Safety Alerts</h3>
-                        <p class="text-gray-400 text-sm">Real-time incident notifications</p>
-                    </div>
-                    <div class="solution-card">
-                        <i class="fas fa-solar-panel text-[#00f5d0] text-2xl mb-3"></i>
-                        <h3 class="text-lg font-semibold mb-2">Solar Surveillance</h3>
-                        <p class="text-gray-400 text-sm">Remote site monitoring solutions</p>
-                    </div>
-                    <div class="solution-card">
-                        <i class="fas fa-bus text-[#00f5d0] text-2xl mb-3"></i>
-                        <h3 class="text-lg font-semibold mb-2">School Bus Safety</h3>
-                        <p class="text-gray-400 text-sm">Student transportation monitoring</p>
-                    </div>
-                    <div class="solution-card">
-                        <i class="fas fa-exclamation-triangle text-[#00f5d0] text-2xl mb-3"></i>
-                        <h3 class="text-lg font-semibold mb-2">Accident Detection</h3>
-                        <p class="text-gray-400 text-sm">Workplace safety monitoring</p>
-                    </div>
-                </div>
-
-                <!-- Row 3 - Slides Right -->
-                <div class="carousel-row slide-right">
-                    <!-- Duplicate content to make it appear infinite -->
-                    <div class="solution-card">
-                        <i class="fas fa-door-open text-[#00f5d0] text-2xl mb-3"></i>
-                        <h3 class="text-lg font-semibold mb-2">Intrusion Detection</h3>
-                        <p class="text-gray-400 text-sm">Perimeter breach alerts</p>
-                    </div>
-                    <div class="solution-card">
-                        <i class="fas fa-id-card text-[#00f5d0] text-2xl mb-3"></i>
-                        <h3 class="text-lg font-semibold mb-2">Access Control</h3>
-                        <p class="text-gray-400 text-sm">Smart entry management</p>
-                    </div>
-                    <div class="solution-card">
-                        <i class="fas fa-fire text-[#00f5d0] text-2xl mb-3"></i>
-                        <h3 class="text-lg font-semibold mb-2">Fire Detection</h3>
-                        <p class="text-gray-400 text-sm">Early smoke & flame recognition</p>
-                    </div>
-                    <div class="solution-card">
-                        <i class="fas fa-walking text-[#00f5d0] text-2xl mb-3"></i>
-                        <h3 class="text-lg font-semibold mb-2">Behavior Analysis</h3>
-                        <p class="text-gray-400 text-sm">Suspicious activity detection</p>
-                    </div>
-                    <div class="solution-card">
-                        <i class="fas fa-mobile-alt text-[#00f5d0] text-2xl mb-3"></i>
-                        <h3 class="text-lg font-semibold mb-2">Mobile Alerts</h3>
-                        <p class="text-gray-400 text-sm">Instant notifications anywhere</p>
-                    </div>
-                    <div class="solution-card">
-                        <i class="fas fa-cloud text-[#00f5d0] text-2xl mb-3"></i>
-                        <h3 class="text-lg font-semibold mb-2">Cloud Integration</h3>
-                        <p class="text-gray-400 text-sm">Scalable cloud deployment</p>
-                    </div>
-                    <div class="solution-card">
-                        <i class="fas fa-hard-hat text-[#00f5d0] text-2xl mb-3"></i>
-                        <h3 class="text-lg font-semibold mb-2">PPE Compliance</h3>
-                        <p class="text-gray-400 text-sm">Safety equipment monitoring</p>
-                    </div>
-                    <div class="solution-card">
-                        <i class="fas fa-running text-[#00f5d0] text-2xl mb-3"></i>
-                        <h3 class="text-lg font-semibold mb-2">Loitering Detection</h3>
-                        <p class="text-gray-400 text-sm">Unauthorized presence alerts</p>
-                    </div>
-                    <div class="solution-card">
-                        <i class="fas fa-fingerprint text-[#00f5d0] text-2xl mb-3"></i>
-                        <h3 class="text-lg font-semibold mb-2">Biometric Access</h3>
-                        <p class="text-gray-400 text-sm">Multi-factor authentication</p>
-                    </div>
-                    <div class="solution-card">
-                        <i class="fas fa-truck text-[#00f5d0] text-2xl mb-3"></i>
-                        <h3 class="text-lg font-semibold mb-2">Fleet Monitoring</h3>
-                        <p class="text-gray-400 text-sm">Vehicle & driver safety tracking</p>
-                    </div>
-                    <!-- Duplicate the same content again -->
-                    <div class="solution-card">
-                        <i class="fas fa-door-open text-[#00f5d0] text-2xl mb-3"></i>
-                        <h3 class="text-lg font-semibold mb-2">Intrusion Detection</h3>
-                        <p class="text-gray-400 text-sm">Perimeter breach alerts</p>
-                    </div>
-                    <div class="solution-card">
-                        <i class="fas fa-id-card text-[#00f5d0] text-2xl mb-3"></i>
-                        <h3 class="text-lg font-semibold mb-2">Access Control</h3>
-                        <p class="text-gray-400 text-sm">Smart entry management</p>
-                    </div>
-                    <div class="solution-card">
-                        <i class="fas fa-fire text-[#00f5d0] text-2xl mb-3"></i>
-                        <h3 class="text-lg font-semibold mb-2">Fire Detection</h3>
-                        <p class="text-gray-400 text-sm">Early smoke & flame recognition</p>
-                    </div>
-                    <div class="solution-card">
-                        <i class="fas fa-walking text-[#00f5d0] text-2xl mb-3"></i>
-                        <h3 class="text-lg font-semibold mb-2">Behavior Analysis</h3>
-                        <p class="text-gray-400 text-sm">Suspicious activity detection</p>
-                    </div>
-                    <div class="solution-card">
-                        <i class="fas fa-mobile-alt text-[#00f5d0] text-2xl mb-3"></i>
-                        <h3 class="text-lg font-semibold mb-2">Mobile Alerts</h3>
-                        <p class="text-gray-400 text-sm">Instant notifications anywhere</p>
-                    </div>
-                    <div class="solution-card">
-                        <i class="fas fa-cloud text-[#00f5d0] text-2xl mb-3"></i>
-                        <h3 class="text-lg font-semibold mb-2">Cloud Integration</h3>
-                        <p class="text-gray-400 text-sm">Scalable cloud deployment</p>
-                    </div>
-                    <div class="solution-card">
-                        <i class="fas fa-hard-hat text-[#00f5d0] text-2xl mb-3"></i>
-                        <h3 class="text-lg font-semibold mb-2">PPE Compliance</h3>
-                        <p class="text-gray-400 text-sm">Safety equipment monitoring</p>
-                    </div>
-                    <div class="solution-card">
-                        <i class="fas fa-running text-[#00f5d0] text-2xl mb-3"></i>
-                        <h3 class="text-lg font-semibold mb-2">Loitering Detection</h3>
-                        <p class="text-gray-400 text-sm">Unauthorized presence alerts</p>
-                    </div>
-                    <div class="solution-card">
-                        <i class="fas fa-fingerprint text-[#00f5d0] text-2xl mb-3"></i>
-                        <h3 class="text-lg font-semibold mb-2">Biometric Access</h3>
-                        <p class="text-gray-400 text-sm">Multi-factor authentication</p>
-                    </div>
-                    <div class="solution-card">
-                        <i class="fas fa-truck text-[#00f5d0] text-2xl mb-3"></i>
-                        <h3 class="text-lg font-semibold mb-2">Fleet Monitoring</h3>
-                        <p class="text-gray-400 text-sm">Vehicle & driver safety tracking</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- Why Choose Us Section -->
-        <section id="why-us" class="py-20 bg-slate-900 bg-opacity-50">
-            <div class="container mx-auto px-6 text-center">
-                <h2 class="text-3xl md:text-4xl font-bold mb-6">
-                    <i class="fas fa-medal text-[#00f5d0] mr-3"></i> Why Early Adopters Choose Us
-                </h2>
-                <p class="max-w-2xl mx-auto text-gray-400 mb-12">
-                    <i class="fas fa-lightbulb text-[#00f5d0] mr-2"></i> We're building the future
-                    of AI surveillance—join us as a founding partner.
+    <!-- Hero Section -->
+    <section id="hero" class="container mx-auto px-6 py-20 md:py-32 relative">
+        <!-- Animated background elements -->
+        <div class="absolute top-0 left-0 w-full h-full overflow-hidden z-0">
+            <div class="absolute -top-20 -left-20 w-64 h-64 bg-blue-500 rounded-full filter blur-3xl opacity-10 animate-float"></div>
+            <div class="absolute bottom-0 right-0 w-64 h-64 bg-blue-400 rounded-full filter blur-3xl opacity-10 animate-float-delay"></div>
+            <div class="absolute top-1/2 right-1/4 w-32 h-32 bg-[#00f5d0] rounded-full filter blur-3xl opacity-5 animate-pulse-slow"></div>
+        </div>
+        
+        <div class="flex flex-col md:flex-row items-center relative z-10">
+            <div class="md:w-1/2 mb-12 md:mb-0">
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+                    <span class="gradient-text">Intelligent Video Analytics</span>
+                    <br />For Modern Security Needs
+                </h1>
+                <p class="text-lg mb-8 text-gray-400 max-w-lg">
+                    <i class="fas fa-rocket text-[#00f5d0] mr-2"></i> Join our early adopter program and deploy our advanced detection AI with 99.9% accuracy.
                 </p>
 
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <!-- Reason 1 -->
-                    <div class="bg-slate-800 p-8 rounded-xl">
-                        <div class="text-5xl mb-4 text-[#00f5d0]"><i class="fas fa-brain"></i></div>
-                        <h3 class="text-xl font-semibold mb-3">Cutting-Edge AI</h3>
-                        <p class="text-gray-400">
-                            Proprietary models trained on real-world threats (not just lab data).
-                        </p>
-                    </div>
+                <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 mb-12">
+                    <button class="gradient-btn text-white px-8 py-3 rounded-full font-medium hover:scale-105 transition-transform" onclick="scrollToElement('contact')">
+                        <i class="fas fa-play-circle mr-2"></i> Start Free Pilot
+                    </button>
+                    <button class="border border-blue-400 text-blue-400 px-8 py-3 rounded-full font-medium hover:bg-blue-400 hover:bg-opacity-10 transition hover:scale-105" onclick="scrollToElement('features')">
+                        <i class="fas fa-info-circle mr-2"></i> See How It Works
+                    </button>
+                </div>
 
-                    <!-- Reason 2 -->
-                    <div class="bg-slate-800 p-8 rounded-xl">
-                        <div class="text-5xl mb-4 text-[#00f5d0]">
-                            <i class="fas fa-handshake"></i>
+                <!-- Real-time stats -->
+                <div class="bg-slate-800 bg-opacity-50 p-6 rounded-xl backdrop-blur-sm border border-slate-700">
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="text-center">
+                            <div class="text-3xl font-bold text-[#00f5d0] countup" data-target="4782">0</div>
+                            <div class="text-sm text-gray-400">Cameras Monitored</div>
                         </div>
-                        <h3 class="text-xl font-semibold mb-3">Founding Partner Perks</h3>
-                        <p class="text-gray-400">
-                            Lock in lifetime discounts + influence our roadmap.
-                        </p>
-                    </div>
-
-                    <!-- Reason 3 -->
-                    <div class="bg-slate-800 p-8 rounded-xl">
-                        <div class="text-5xl mb-4 text-[#00f5d0]">
-                            <i class="fas fa-lock-open"></i>
+                        <div class="text-center">
+                            <div class="text-3xl font-bold text-[#00f5d0] countup" data-target="127">0</div>
+                            <div class="text-sm text-gray-400">Threats Detected Today</div>
                         </div>
-                        <h3 class="text-xl font-semibold mb-3">Zero-Risk Pilot</h3>
-                        <p class="text-gray-400">30-day free trial. Cancel anytime.</p>
                     </div>
                 </div>
             </div>
-        </section>
+            
+            <div class="md:w-1/2 flex justify-center relative">
+                <div class="relative w-full max-w-md">
+                    <div class="relative bg-slate-800 bg-opacity-50 backdrop-blur-sm rounded-2xl p-1 glow-effect transform transition-all hover:scale-105 hover:shadow-xl">
+                        <div class="absolute top-4 left-4 bg-blue-600 text-white text-xs px-2 py-1 rounded flex items-center">
+                            <i class="fas fa-bolt mr-1"></i> LIVE DEMO
+                        </div>
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                             alt="Security Camera Analytics" 
+                             class="rounded-xl w-full h-auto" 
+                             loading="lazy">
+                        <div class="absolute bottom-4 left-4 bg-black bg-opacity-70 px-3 py-2 rounded border-l-4 border-[#00f5d0]">
+                            <div class="text-[#00f5d0] font-bold flex items-center">
+                                <i class="fas fa-exclamation-triangle mr-2"></i> ALERT: Unauthorized Access
+                            </div>
+                            <div class="text-xs text-gray-300">
+                                <i class="far fa-clock mr-1"></i> Zone 4B • 2 seconds ago
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="absolute -bottom-6 -right-6 bg-slate-800 p-4 rounded-lg shadow-lg border border-slate-700 hidden md:block">
+                        <div class="flex items-center">
+                            <div class="w-3 h-3 bg-green-500 rounded-full mr-2 animate-pulse"></div>
+                            <span class="text-sm font-medium">AI ACTIVE</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        <!-- Features Section -->
-        <section id="features" class="py-20">
-            <div class="container mx-auto px-6">
-                <div class="text-center mb-16">
-                    <h2 class="text-3xl md:text-4xl font-bold mb-4">
-                        <i class="fas fa-shield-alt text-[#00f5d0] mr-3"></i> Military-Grade Threat
-                        Detection
-                    </h2>
-                    <p class="max-w-2xl mx-auto text-gray-400">
-                        <i class="fas fa-chart-line text-[#00f5d0] mr-2"></i> Enterprise features
-                        that outperform human monitoring 24/7
+    <!-- Client Logos -->
+    <section class="py-12 bg-slate-800 bg-opacity-50">
+        <div class="container mx-auto px-6">
+            <h3 class="text-center text-gray-400 mb-8 text-sm uppercase tracking-wider">
+                Trusted by security teams worldwide
+            </h3>
+            <div class="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-80 hover:opacity-100 transition-opacity">
+                <img src="https://via.placeholder.com/120x40/1e293b/ffffff?text=SecureCorp" alt="SecureCorp" class="h-8 md:h-10 w-auto grayscale hover:grayscale-0 transition-all">
+                <img src="https://via.placeholder.com/120x40/1e293b/ffffff?text=ArmorShield" alt="ArmorShield" class="h-8 md:h-10 w-auto grayscale hover:grayscale-0 transition-all">
+                <img src="https://via.placeholder.com/120x40/1e293b/ffffff?text=SafeZone" alt="SafeZone" class="h-8 md:h-10 w-auto grayscale hover:grayscale-0 transition-all">
+                <img src="https://via.placeholder.com/120x40/1e293b/ffffff?text=Vigilant" alt="Vigilant" class="h-8 md:h-10 w-auto grayscale hover:grayscale-0 transition-all">
+                <img src="https://via.placeholder.com/120x40/1e293b/ffffff?text=Fortress" alt="Fortress" class="h-8 md:h-10 w-auto grayscale hover:grayscale-0 transition-all">
+            </div>
+        </div>
+    </section>
+
+    <!-- Solutions Carousel -->
+    <section id="solutions" class="py-20 overflow-hidden relative">
+        <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80')] bg-cover bg-center opacity-5"></div>
+        
+        <div class="container mx-auto px-6 mb-12 relative z-10">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4">
+                <i class="fas fa-cogs text-[#00f5d0] mr-3"></i> Our AI Solutions
+            </h2>
+            <p class="text-center text-gray-400 max-w-2xl mx-auto">
+                Comprehensive security intelligence across every scenario
+            </p>
+        </div>
+
+        <div class="relative z-10">
+            <!-- Carousel rows will be populated by JavaScript -->
+            <div id="carousel-container"></div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us Section -->
+    <section id="why-us" class="py-20 bg-gradient-to-b from-slate-900 to-slate-800">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6">
+                <i class="fas fa-medal text-[#00f5d0] mr-3"></i> Why Choose Our Platform
+            </h2>
+            <p class="max-w-2xl mx-auto text-gray-400 mb-12">
+                <i class="fas fa-lightbulb text-[#00f5d0] mr-2"></i> Advanced AI surveillance technology designed for enterprise needs
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <!-- Reason 1 -->
+                <div class="bg-slate-800 p-8 rounded-xl border border-slate-700 hover:border-[#00f5d0] transition-all hover:scale-105">
+                    <div class="text-5xl mb-4 text-[#00f5d0]"><i class="fas fa-brain"></i></div>
+                    <h3 class="text-xl font-semibold mb-3">Advanced AI</h3>
+                    <p class="text-gray-400">
+                        Proprietary models trained on real-world scenarios for accurate detection with 99.9% accuracy.
                     </p>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- Feature 1 -->
-                    <div
-                        class="feature-card bg-slate-800 bg-opacity-50 backdrop-blur-sm p-8 rounded-xl transition duration-300"
-                    >
-                        <div
-                            class="w-14 h-14 bg-blue-500 bg-opacity-10 rounded-lg flex items-center justify-center mb-6"
-                        >
-                            <i class="fas fa-bolt text-blue-400 text-2xl"></i>
-                        </div>
-                        <h3 class="text-xl font-semibold mb-3">Real-time Response</h3>
-                        <p class="text-gray-400">
-                            Automated lockdowns, alarms, and guard dispatch triggered in &lt;2
-                            seconds
-                        </p>
+                <!-- Reason 2 -->
+                <div class="bg-slate-800 p-8 rounded-xl border border-slate-700 hover:border-[#00f5d0] transition-all hover:scale-105">
+                    <div class="text-5xl mb-4 text-[#00f5d0]">
+                        <i class="fas fa-handshake"></i>
                     </div>
+                    <h3 class="text-xl font-semibold mb-3">Partner Benefits</h3>
+                    <p class="text-gray-400">
+                        Priority access to new features, dedicated support, and revenue sharing opportunities.
+                    </p>
+                </div>
 
-                    <!-- Feature 2 -->
-                    <div
-                        class="feature-card bg-slate-800 bg-opacity-50 backdrop-blur-sm p-8 rounded-xl transition duration-300"
-                    >
-                        <div
-                            class="w-14 h-14 bg-blue-500 bg-opacity-10 rounded-lg flex items-center justify-center mb-6"
-                        >
-                            <i class="fas fa-robot text-blue-400 text-2xl"></i>
-                        </div>
-                        <h3 class="text-xl font-semibold mb-3">Custom AI Models</h3>
-                        <p class="text-gray-400">
-                            Train proprietary detectors for uniforms, equipment, or unique threats
-                        </p>
+                <!-- Reason 3 -->
+                <div class="bg-slate-800 p-8 rounded-xl border border-slate-700 hover:border-[#00f5d0] transition-all hover:scale-105">
+                    <div class="text-5xl mb-4 text-[#00f5d0]">
+                        <i class="fas fa-lock-open"></i>
                     </div>
+                    <h3 class="text-xl font-semibold mb-3">Risk-Free Trial</h3>
+                    <p class="text-gray-400">30-day free trial with no commitment required. See results in 48 hours.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-                    <!-- Feature 3 -->
-                    <div
-                        class="feature-card bg-slate-800 bg-opacity-50 backdrop-blur-sm p-8 rounded-xl transition duration-300"
-                    >
-                        <div
-                            class="w-14 h-14 bg-blue-500 bg-opacity-10 rounded-lg flex items-center justify-center mb-6"
-                        >
-                            <i class="fas fa-chart-line text-blue-400 text-2xl"></i>
-                        </div>
-                        <h3 class="text-xl font-semibold mb-3">Predictive Analytics</h3>
-                        <p class="text-gray-400">
-                            Forecast security risks based on historical patterns and real-time data
-                        </p>
+    <!-- Features Section -->
+    <section id="features" class="py-20 bg-slate-900 bg-opacity-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">
+                    <i class="fas fa-shield-alt text-[#00f5d0] mr-3"></i> Advanced Security Monitoring
+                </h2>
+                <p class="max-w-2xl mx-auto text-gray-400">
+                    <i class="fas fa-chart-line text-[#00f5d0] mr-2"></i> Comprehensive features that enhance security operations
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <!-- Feature 1 -->
+                <div class="feature-card bg-slate-800 bg-opacity-50 backdrop-blur-sm p-8 rounded-xl border border-slate-700 transition-all hover:border-[#00f5d0]">
+                    <div class="w-14 h-14 bg-blue-500 bg-opacity-10 rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-bolt text-blue-400 text-2xl"></i>
                     </div>
-
-                    <!-- Feature 4 -->
-                    <div
-                        class="feature-card bg-slate-800 bg-opacity-50 backdrop-blur-sm p-8 rounded-xl transition duration-300"
-                    >
-                        <div
-                            class="w-14 h-14 bg-blue-500 bg-opacity-10 rounded-lg flex items-center justify-center mb-6"
-                        >
-                            <i class="fas fa-fingerprint text-blue-400 text-2xl"></i>
-                        </div>
-                        <h3 class="text-xl font-semibold mb-3">Biometric Watchlists</h3>
-                        <p class="text-gray-400">
-                            Whitelist employees, blacklist threats with 99.8% accuracy
-                        </p>
-                    </div>
-
-                    <!-- Feature 5 -->
-                    <div
-                        class="feature-card bg-slate-800 bg-opacity-50 backdrop-blur-sm p-8 rounded-xl transition duration-300"
-                    >
-                        <div
-                            class="w-14 h-14 bg-blue-500 bg-opacity-10 rounded-lg flex items-center justify-center mb-6"
-                        >
-                            <i class="fas fa-sync-alt text-blue-400 text-2xl"></i>
-                        </div>
-                        <h3 class="text-xl font-semibold mb-3">Automatic Updates</h3>
-                        <p class="text-gray-400">
-                            Threat models improve weekly with global incident data
-                        </p>
-                    </div>
-
-                    <!-- Feature 6 -->
-                    <div
-                        class="feature-card bg-slate-800 bg-opacity-50 backdrop-blur-sm p-8 rounded-xl transition duration-300"
-                    >
-                        <div
-                            class="w-14 h-14 bg-blue-500 bg-opacity-10 rounded-lg flex items-center justify-center mb-6"
-                        >
-                            <i class="fas fa-microchip text-blue-400 text-2xl"></i>
-                        </div>
-                        <h3 class="text-xl font-semibold mb-3">Edge Processing</h3>
-                        <p class="text-gray-400">
-                            On-premise analysis with zero latency for critical facilities
-                        </p>
+                    <h3 class="text-xl font-semibold mb-3">Real-time Response</h3>
+                    <p class="text-gray-400 mb-4">
+                        Automated alerts and responses triggered in under 2 seconds with 99.9% accuracy.
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="text-xs bg-slate-700 px-2 py-1 rounded">Instant Alerts</span>
+                        <span class="text-xs bg-slate-700 px-2 py-1 rounded">Auto-Lockdown</span>
+                        <span class="text-xs bg-slate-700 px-2 py-1 rounded">SMS Notifications</span>
                     </div>
                 </div>
 
-                <div class="mt-16 text-center">
-                    <button
-                        class="gradient-btn text-white px-8 py-3 rounded-full font-medium"
-                        onclick="scrollToContact()"
-                    >
-                        <i class="fas fa-file-download mr-2"></i> Request Technical Specs
+                <!-- Feature 2 -->
+                <div class="feature-card bg-slate-800 bg-opacity-50 backdrop-blur-sm p-8 rounded-xl border border-slate-700 transition-all hover:border-[#00f5d0]">
+                    <div class="w-14 h-14 bg-blue-500 bg-opacity-10 rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-robot text-blue-400 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Custom AI Models</h3>
+                    <p class="text-gray-400 mb-4">
+                        Train specialized detectors for your specific security needs with our no-code AI builder.
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="text-xs bg-slate-700 px-2 py-1 rounded">No-Code Training</span>
+                        <span class="text-xs bg-slate-700 px-2 py-1 rounded">Custom Objects</span>
+                        <span class="text-xs bg-slate-700 px-2 py-1 rounded">Behavior Analysis</span>
+                    </div>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="feature-card bg-slate-800 bg-opacity-50 backdrop-blur-sm p-8 rounded-xl border border-slate-700 transition-all hover:border-[#00f5d0]">
+                    <div class="w-14 h-14 bg-blue-500 bg-opacity-10 rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-chart-line text-blue-400 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Predictive Analytics</h3>
+                    <p class="text-gray-400 mb-4">
+                        Identify potential security risks before they occur with our advanced pattern recognition.
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="text-xs bg-slate-700 px-2 py-1 rounded">Anomaly Detection</span>
+                        <span class="text-xs bg-slate-700 px-2 py-1 rounded">Heatmaps</span>
+                        <span class="text-xs bg-slate-700 px-2 py-1 rounded">Trend Analysis</span>
+                    </div>
+                </div>
+
+                <!-- Feature 4 -->
+                <div class="feature-card bg-slate-800 bg-opacity-50 backdrop-blur-sm p-8 rounded-xl border border-slate-700 transition-all hover:border-[#00f5d0]">
+                    <div class="w-14 h-14 bg-blue-500 bg-opacity-10 rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-fingerprint text-blue-400 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Access Control</h3>
+                    <p class="text-gray-400 mb-4">
+                        Manage personnel access with high-accuracy biometrics and facial recognition.
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="text-xs bg-slate-700 px-2 py-1 rounded">Facial Recognition</span>
+                        <span class="text-xs bg-slate-700 px-2 py-1 rounded">Badge Detection</span>
+                        <span class="text-xs bg-slate-700 px-2 py-1 rounded">Multi-Factor</span>
+                    </div>
+                </div>
+
+                <!-- Feature 5 -->
+                <div class="feature-card bg-slate-800 bg-opacity-50 backdrop-blur-sm p-8 rounded-xl border border-slate-700 transition-all hover:border-[#00f5d0]">
+                    <div class="w-14 h-14 bg-blue-500 bg-opacity-10 rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-sync-alt text-blue-400 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Continuous Updates</h3>
+                    <p class="text-gray-400 mb-4">
+                        Models improve regularly with new threat data from our global security network.
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="text-xs bg-slate-700 px-2 py-1 rounded">Auto-Learning</span>
+                        <span class="text-xs bg-slate-700 px-2 py-1 rounded">Threat Intel</span>
+                        <span class="text-xs bg-slate-700 px-2 py-1 rounded">Weekly Updates</span>
+                    </div>
+                </div>
+
+                <!-- Feature 6 -->
+                <div class="feature-card bg-slate-800 bg-opacity-50 backdrop-blur-sm p-8 rounded-xl border border-slate-700 transition-all hover:border-[#00f5d0]">
+                    <div class="w-14 h-14 bg-blue-500 bg-opacity-10 rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-microchip text-blue-400 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Edge Processing</h3>
+                    <p class="text-gray-400 mb-4">
+                        On-premise analysis with minimal latency and no cloud dependency.
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="text-xs bg-slate-700 px-2 py-1 rounded">Low Latency</span>
+                        <span class="text-xs bg-slate-700 px-2 py-1 rounded">Offline Mode</span>
+                        <span class="text-xs bg-slate-700 px-2 py-1 rounded">Local Processing</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-16 text-center">
+                <button class="gradient-btn text-white px-8 py-3 rounded-full font-medium hover:scale-105 transition-transform" onclick="scrollToElement('contact')">
+                    <i class="fas fa-file-download mr-2"></i> Request Technical Specs
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-20 bg-slate-800 bg-opacity-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">
+                    <i class="fas fa-quote-left text-[#00f5d0] mr-3"></i> Trusted by Security Teams
+                </h2>
+                <p class="max-w-2xl mx-auto text-gray-400">
+                    <i class="fas fa-star text-[#00f5d0] mr-2"></i> What our partners say about our AI security platform
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <!-- Testimonial 1 -->
+                <div class="bg-slate-800 bg-opacity-50 p-8 rounded-xl border border-slate-700 hover:border-[#00f5d0] transition-all">
+                    <div class="flex items-center mb-4">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="John D." class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-semibold">John D.</h4>
+                            <p class="text-sm text-gray-400">Security Director, Fortune 500</p>
+                        </div>
+                    </div>
+                    <div class="text-gray-300 mb-4">
+                        <i class="fas fa-quote-left text-[#00f5d0] mr-2 opacity-50"></i>
+                        Reduced our security incidents by 78% in the first month. The AI caught threats our human team missed.
+                        <i class="fas fa-quote-right text-[#00f5d0] ml-2 opacity-50"></i>
+                    </div>
+                    <div class="flex text-yellow-400">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+
+                <!-- Testimonial 2 -->
+                <div class="bg-slate-800 bg-opacity-50 p-8 rounded-xl border border-slate-700 hover:border-[#00f5d0] transition-all">
+                    <div class="flex items-center mb-4">
+                        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Sarah K." class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-semibold">Sarah K.</h4>
+                            <p class="text-sm text-gray-400">CTO, Retail Chain</p>
+                        </div>
+                    </div>
+                    <div class="text-gray-300 mb-4">
+                        <i class="fas fa-quote-left text-[#00f5d0] mr-2 opacity-50"></i>
+                        The facial recognition reduced our shrinkage by 62%. ROI came in just 6 weeks. Game changing tech.
+                        <i class="fas fa-quote-right text-[#00f5d0] ml-2 opacity-50"></i>
+                    </div>
+                    <div class="flex text-yellow-400">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+
+                <!-- Testimonial 3 -->
+                <div class="bg-slate-800 bg-opacity-50 p-8 rounded-xl border border-slate-700 hover:border-[#00f5d0] transition-all">
+                    <div class="flex items-center mb-4">
+                        <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Michael T." class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-semibold">Michael T.</h4>
+                            <p class="text-sm text-gray-400">Facility Manager, Manufacturing</p>
+                        </div>
+                    </div>
+                    <div class="text-gray-300 mb-4">
+                        <i class="fas fa-quote-left text-[#00f5d0] mr-2 opacity-50"></i>
+                        The PPE detection saved us from OSHA fines and prevented 3 accidents in our first quarter of use.
+                        <i class="fas fa-quote-right text-[#00f5d0] ml-2 opacity-50"></i>
+                    </div>
+                    <div class="flex text-yellow-400">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="py-20 bg-slate-900 bg-opacity-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">
+                    <i class="fas fa-tags text-[#00f5d0] mr-3"></i> Transparent & Scalable Pricing
+                </h2>
+                <p class="max-w-2xl mx-auto text-gray-400">
+                    <i class="fas fa-calculator text-[#00f5d0] mr-2"></i> Pay only for what you use — scale effortlessly with your needs
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                <!-- Core Plan -->
+                <div class="bg-slate-800 bg-opacity-50 backdrop-blur-sm p-8 rounded-xl shadow-lg border border-slate-700 hover:border-[#00f5d0] transition-all">
+                    <h3 class="text-xl font-semibold mb-4 text-white">
+                        <i class="fas fa-bolt text-[#00f5d0] mr-2"></i> Core Plan – For Small to Mid Deployments
+                    </h3>
+
+                    <div class="space-y-4 text-gray-200 text-sm mb-6">
+                        <div class="flex justify-between border-b border-slate-700 pb-2">
+                            <span><i class="fas fa-video mr-2"></i>Per Camera</span>
+                            <span class="font-bold text-white">
+                                ₹200<span class="text-xs text-gray-400">/month</span>
+                            </span>
+                        </div>
+                        <div class="flex justify-between border-b border-slate-700 pb-2">
+                            <span><i class="fas fa-brain mr-2"></i>AI Algorithms</span>
+                            <span class="font-bold text-white">
+                                ₹5000<span class="text-xs text-gray-400">/month</span>
+                            </span>
+                        </div>
+                    </div>
+
+                    <ul class="space-y-3 mb-8 text-gray-300 text-sm">
+                        <li class="flex items-center">
+                            <i class="fas fa-cloud text-[#00f5d0] mr-3"></i>Cloud-based AI processing
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-database text-[#00f5d0] mr-3"></i>30-day event storage
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-bell text-[#00f5d0] mr-3"></i>Real-time Email & SMS alerts
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-chart-line text-[#00f5d0] mr-3"></i>Basic analytics dashboard
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-video text-[#00f5d0] mr-3"></i>Supports up to 30 cameras
+                        </li>
+                    </ul>
+
+                    <button class="w-full gradient-btn text-white px-8 py-3 rounded-full font-medium transition hover:scale-105" onclick="scrollToElement('contact')">
+                        <i class="fas fa-sliders-h mr-2"></i> Get Started
+                    </button>
+                </div>
+
+                <!-- Enterprise Plan -->
+                <div class="bg-slate-800 bg-opacity-50 backdrop-blur-sm p-8 rounded-xl border-2 border-[#00f5d0] shadow-xl transform hover:scale-101 transition-all">
+                    <div class="absolute top-0 right-0 bg-[#00f5d0] text-slate-900 text-xs font-bold px-3 py-1 rounded-bl-lg rounded-tr-lg">
+                        MOST POPULAR
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4 text-white">
+                        <i class="fas fa-building text-[#00f5d0] mr-2"></i> Enterprise Suite – Built for Scale
+                    </h3>
+
+                    <div class="bg-slate-700 bg-opacity-70 p-4 rounded-lg text-center mb-6">
+                        <div class="text-2xl font-bold text-white mb-2">Custom Quotation</div>
+                        <p class="text-sm text-gray-300">
+                            <i class="fas fa-user-cog mr-1"></i> Tailored AI solutions for high-scale operations
+                        </p>
+                    </div>
+
+                    <h4 class="text-sm font-medium mb-3 text-[#00f5d0]">
+                        <i class="fas fa-star mr-1"></i> Premium Capabilities
+                    </h4>
+                    <ul class="text-sm space-y-3 text-gray-300 mb-8">
+                        <li class="flex items-center">
+                            <i class="fas fa-infinity text-[#00f5d0] mr-3"></i>Unlimited camera support
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-code text-[#00f5d0] mr-3"></i>Custom AI model development
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-server text-[#00f5d0] mr-3"></i>On-premise or hybrid deployment
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-headset text-[#00f5d0] mr-3"></i>24/7 priority support
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-inbox text-[#00f5d0] mr-3"></i>Unlimited event storage
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-shield-alt text-[#00f5d0] mr-3"></i>Enterprise-grade SLA compliance
+                        </li>
+                    </ul>
+
+                    <button class="w-full border-2 border-[#00f5d0] text-[#00f5d0] px-8 py-3 rounded-full font-medium hover:bg-[#00f5d0] hover:bg-opacity-10 transition hover:scale-105" onclick="scrollToElement('contact')">
+                        <i class="fas fa-envelope mr-2"></i> Request Custom Quote
                     </button>
                 </div>
             </div>
-        </section>
-        <!-- Pricing Section -->
-        <section id="pricing" class="py-20 bg-slate-900 bg-opacity-50">
-            <div class="container mx-auto px-6">
-                <div class="text-center mb-16">
-                    <h2 class="text-3xl md:text-4xl font-bold mb-4">
-                        <i class="fas fa-tags text-[#00f5d0] mr-3"></i> Transparent & Scalable
-                        Pricing
-                    </h2>
-                    <p class="max-w-2xl mx-auto text-gray-400">
-                        <i class="fas fa-calculator text-[#00f5d0] mr-2"></i> Pay only for what you
-                        use — scale effortlessly with your needs
-                    </p>
-                </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-                    <!-- Core Plan -->
-                    <div
-                        class="bg-slate-800 bg-opacity-50 backdrop-blur-sm p-8 rounded-xl shadow-lg"
-                    >
-                        <h3 class="text-xl font-semibold mb-4 text-white">
-                            <i class="fas fa-bolt text-[#00f5d0] mr-2"></i> Core Plan – For Small to
-                            Mid Deployments
-                        </h3>
+            <!-- Price Calculator -->
+            <div class="mt-16 max-w-2xl mx-auto bg-slate-800 bg-opacity-50 backdrop-blur-sm rounded-xl p-8 border border-slate-700">
+                <h3 class="text-2xl font-bold mb-6 text-center text-white">
+                    <i class="fas fa-calculator text-[#00f5d0] mr-2"></i> Price Calculator
+                </h3>
 
-                        <div class="space-y-4 text-gray-200 text-sm mb-6">
-                            <div class="flex justify-between border-b border-slate-700 pb-2">
-                                <span><i class="fas fa-video mr-2"></i>Per Camera</span>
-                                <span class="font-bold text-white"
-                                    >₹200<span class="text-xs text-gray-400">/month</span></span
-                                >
-                            </div>
-                            <div class="flex justify-between border-b border-slate-700 pb-2">
-                                <span><i class="fas fa-brain mr-2"></i>AI Algorithms</span>
-                                <span class="text-right font-medium text-white"
-                                    >1.5× multiplier per AI<br /><span class="text-xs text-gray-400"
-                                        >(1 AI: ₹2,000, 2 AIs: ₹3,000, etc.)</span
-                                    ></span
-                                >
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                    <div>
+                        <label for="camera-count" class="block text-sm font-medium mb-2">
+                            <i class="fas fa-video text-[#00f5d0] mr-2"></i> Number of Cameras
+                        </label>
+                        <div class="relative">
+                            <input type="number" id="camera-count" min="1" max="100" value="1"
+                                class="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 calculator-input" />
+                            <div class="absolute right-3 top-3 flex flex-col">
+                                <button class="text-xs text-gray-400 hover:text-[#00f5d0]" onclick="adjustCameraCount(1)">
+                                    <i class="fas fa-chevron-up"></i>
+                                </button>
+                                <button class="text-xs text-gray-400 hover:text-[#00f5d0]" onclick="adjustCameraCount(-1)">
+                                    <i class="fas fa-chevron-down"></i>
+                                </button>
                             </div>
                         </div>
-
-                        <ul class="space-y-3 mb-8 text-gray-300 text-sm">
-                            <li class="flex items-center">
-                                <i class="fas fa-cloud text-[#00f5d0] mr-3"></i>Cloud-based AI
-                                processing
-                            </li>
-                            <li class="flex items-center">
-                                <i class="fas fa-database text-[#00f5d0] mr-3"></i>30-day event
-                                storage
-                            </li>
-                            <li class="flex items-center">
-                                <i class="fas fa-bell text-[#00f5d0] mr-3"></i>Real-time Email & SMS
-                                alerts
-                            </li>
-                            <li class="flex items-center">
-                                <i class="fas fa-chart-line text-[#00f5d0] mr-3"></i>Basic analytics
-                                dashboard
-                            </li>
-                            <li class="flex items-center">
-                                <i class="fas fa-video text-[#00f5d0] mr-3"></i>Supports up to 30
-                                cameras
-                            </li>
-                        </ul>
-
-                        <button
-                            class="w-full gradient-btn text-white px-8 py-3 rounded-full font-medium transition hover:scale-105"
-                            onclick="scrollToContact()"
-                        >
-                            <i class="fas fa-sliders-h mr-2"></i> Get Started
-                        </button>
                     </div>
-
-                    <!-- Enterprise Plan -->
-                    <div
-                        class="bg-slate-800 bg-opacity-50 backdrop-blur-sm p-8 rounded-xl border border-[#00f5d0] shadow-xl"
-                    >
-                        <h3 class="text-xl font-semibold mb-4 text-white">
-                            <i class="fas fa-building text-[#00f5d0] mr-2"></i> Enterprise Suite –
-                            Built for Scale
-                        </h3>
-
-                        <div class="bg-slate-700 bg-opacity-70 p-4 rounded-lg text-center mb-6">
-                            <div class="text-2xl font-bold text-white mb-2">Custom Quotation</div>
-                            <p class="text-sm text-gray-300">
-                                <i class="fas fa-user-cog mr-1"></i> Tailored AI solutions for
-                                high-scale operations
-                            </p>
+                    <div>
+                        <label for="ai-count" class="block text-sm font-medium mb-2">
+                            <i class="fas fa-brain text-[#00f5d0] mr-2"></i> Number of AI Algorithms
+                        </label>
+                        <div class="relative">
+                            <input type="number" id="ai-count" min="0" max="10" value="1"
+                                class="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 calculator-input" />
+                            <div class="absolute right-3 top-3 flex flex-col">
+                                <button class="text-xs text-gray-400 hover:text-[#00f5d0]" onclick="adjustAiCount(1)">
+                                    <i class="fas fa-chevron-up"></i>
+                                </button>
+                                <button class="text-xs text-gray-400 hover:text-[#00f5d0]" onclick="adjustAiCount(-1)">
+                                    <i class="fas fa-chevron-down"></i>
+                                </button>
+                            </div>
                         </div>
-
-                        <h4 class="text-sm font-medium mb-3 text-[#00f5d0]">
-                            <i class="fas fa-star mr-1"></i> Premium Capabilities
-                        </h4>
-                        <ul class="text-sm space-y-3 text-gray-300 mb-8">
-                            <li class="flex items-center">
-                                <i class="fas fa-infinity text-[#00f5d0] mr-3"></i>Unlimited camera
-                                support
-                            </li>
-                            <li class="flex items-center">
-                                <i class="fas fa-code text-[#00f5d0] mr-3"></i>Custom AI model
-                                development
-                            </li>
-                            <li class="flex items-center">
-                                <i class="fas fa-server text-[#00f5d0] mr-3"></i>On-premise or
-                                hybrid deployment
-                            </li>
-                            <li class="flex items-center">
-                                <i class="fas fa-headset text-[#00f5d0] mr-3"></i>24/7 priority
-                                support
-                            </li>
-                            <li class="flex items-center">
-                                <i class="fas fa-inbox text-[#00f5d0] mr-3"></i>Unlimited event
-                                storage
-                            </li>
-                            <li class="flex items-center">
-                                <i class="fas fa-shield-alt text-[#00f5d0] mr-3"></i
-                                >Enterprise-grade SLA compliance
-                            </li>
-                        </ul>
-
-                        <button
-                            class="w-full border border-[#00f5d0] text-[#00f5d0] px-8 py-3 rounded-full font-medium hover:bg-[#00f5d0] hover:bg-opacity-10 transition"
-                            onclick="scrollToContact()"
-                        >
-                            <i class="fas fa-envelope mr-2"></i> Request Custom Quote
-                        </button>
                     </div>
                 </div>
 
-                <!-- Price Calculator -->
-                <div
-                    class="mt-16 max-w-2xl mx-auto bg-slate-800 bg-opacity-50 backdrop-blur-sm rounded-xl p-8"
-                >
-                    <h3 class="text-2xl font-bold mb-6 text-center text-white">
-                        <i class="fas fa-calculator text-[#00f5d0] mr-2"></i> Price Calculator
-                    </h3>
-
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                        <div>
-                            <label for="camera-count" class="block text-sm font-medium mb-2">
-                                <i class="fas fa-video text-[#00f5d0] mr-2"></i> Number of Cameras
-                            </label>
-                            <div class="relative">
-                                <input
-                                    type="number"
-                                    id="camera-count"
-                                    min="1"
-                                    max="100"
-                                    value="1"
-                                    class="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 calculator-input"
-                                />
-                                <div class="absolute right-3 top-3 flex flex-col">
-                                    <button
-                                        class="text-xs text-gray-400 hover:text-[#00f5d0]"
-                                        onclick="adjustCameraCount(1)"
-                                    >
-                                        <i class="fas fa-chevron-up"></i>
-                                    </button>
-                                    <button
-                                        class="text-xs text-gray-400 hover:text-[#00f5d0]"
-                                        onclick="adjustCameraCount(-1)"
-                                    >
-                                        <i class="fas fa-chevron-down"></i>
-                                    </button>
-                                </div>
-                            </div>
+                <div class="bg-slate-700 p-6 rounded-lg price-breakdown border border-slate-600 hover:border-[#00f5d0] transition-all">
+                    <h4 class="text-lg font-semibold mb-4 text-[#00f5d0]">
+                        <i class="fas fa-receipt mr-2"></i> Estimated Monthly Cost
+                    </h4>
+                    <div class="space-y-3">
+                        <div class="flex justify-between">
+                            <span>Cameras (₹200 × <span id="display-cameras">1</span>):</span>
+                            <span class="font-medium" id="cameras-cost">₹200</span>
                         </div>
-                        <div>
-                            <label for="ai-count" class="block text-sm font-medium mb-2">
-                                <i class="fas fa-brain text-[#00f5d0] mr-2"></i> Number of AI
-                                Algorithms
-                            </label>
-                            <div class="relative">
-                                <input
-                                    type="number"
-                                    id="ai-count"
-                                    min="1"
-                                    max="10"
-                                    value="1"
-                                    class="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 calculator-input"
-                                />
-                                <div class="absolute right-3 top-3 flex flex-col">
-                                    <button
-                                        class="text-xs text-gray-400 hover:text-[#00f5d0]"
-                                        onclick="adjustAiCount(1)"
-                                    >
-                                        <i class="fas fa-chevron-up"></i>
-                                    </button>
-                                    <button
-                                        class="text-xs text-gray-400 hover:text-[#00f5d0]"
-                                        onclick="adjustAiCount(-1)"
-                                    >
-                                        <i class="fas fa-chevron-down"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="bg-slate-700 p-6 rounded-lg price-breakdown">
-                        <h4 class="text-lg font-semibold mb-4 text-[#00f5d0]">
-                            <i class="fas fa-receipt mr-2"></i> Estimated Monthly Cost
-                        </h4>
-                        <div class="space-y-3">
+                        <div id="ai-costs-container">
                             <div class="flex justify-between">
-                                <span>Cameras (₹200 × <span id="display-cameras">1</span>):</span>
-                                <span class="font-medium" id="cameras-cost">₹300</span>
+                                <span>1 AI Algorithm:</span>
+                                <span class="font-medium">₹5,000</span>
                             </div>
-                            <div id="ai-costs-container">
-                                <!-- AI costs will be inserted here -->
-                            </div>
-                            <div
-                                class="border-t border-slate-600 pt-3 flex justify-between text-lg font-bold"
-                            >
-                                <span>Total:</span>
-                                <span class="text-[#00f5d0]" id="total-cost">₹3,300/month</span>
-                            </div>
+                        </div>
+                        <div class="border-t border-slate-600 pt-3 flex justify-between text-lg font-bold">
+                            <span>Total:</span>
+                            <span class="text-[#00f5d0]" id="total-cost">₹5,200/month</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-6 text-center">
+                    <button class="gradient-btn text-white px-8 py-3 rounded-full font-medium hover:scale-105 transition-transform" onclick="scrollToElement('contact')">
+                        <i class="fas fa-paper-plane mr-2"></i> Get This Plan
+                    </button>
+                </div>
+            </div>
+
+            <div class="mt-12 text-center">
+                <p class="text-gray-400 text-sm max-w-2xl mx-auto">
+                    <i class="fas fa-info-circle text-[#00f5d0] mr-2"></i>
+                    All prices are exclusive of GST. Discounts available for annual commitments and large deployments.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="py-20 bg-slate-800 bg-opacity-50">
+        <div class="container mx-auto px-6 max-w-4xl">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">
+                    <i class="fas fa-question-circle text-[#00f5d0] mr-3"></i> Frequently Asked Questions
+                </h2>
+                <p class="max-w-2xl mx-auto text-gray-400">
+                    <i class="fas fa-lightbulb text-[#00f5d0] mr-2"></i> Quick answers to common questions about our platform
+                </p>
+            </div>
+
+            <div class="space-y-4">
+                <!-- FAQ Item 1 -->
+                <div class="bg-slate-800 bg-opacity-50 rounded-xl border border-slate-700 overflow-hidden">
+                    <button class="faq-toggle w-full text-left p-6 focus:outline-none">
+                        <div class="flex justify-between items-center">
+                            <h3 class="font-semibold text-lg">How quickly can I deploy your solution?</h3>
+                            <i class="fas fa-chevron-down text-[#00f5d0] transition-transform"></i>
+                        </div>
+                    </button>
+                    <div class="faq-content px-6 pb-6 hidden">
+                        <p class="text-gray-400">
+                            Most deployments are completed within 48 hours. Our team handles the entire setup process remotely - just provide camera access and we'll handle the rest. No hardware installation required in 90% of cases.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 2 -->
+                <div class="bg-slate-800 bg-opacity-50 rounded-xl border border-slate-700 overflow-hidden">
+                    <button class="faq-toggle w-full text-left p-6 focus:outline-none">
+                        <div class="flex justify-between items-center">
+                            <h3 class="font-semibold text-lg">What camera systems do you support?</h3>
+                            <i class="fas fa-chevron-down text-[#00f5d0] transition-transform"></i>
+                        </div>
+                    </button>
+                    <div class="faq-content px-6 pb-6 hidden">
+                        <p class="text-gray-400">
+                            We support all major camera brands including Hikvision, Dahua, Axis, Bosch, and more. Our platform works with RTSP, ONVIF, and most proprietary protocols. If you have older analog cameras, we can integrate them through encoder devices.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 3 -->
+                <div class="bg-slate-800 bg-opacity-50 rounded-xl border border-slate-700 overflow-hidden">
+                    <button class="faq-toggle w-full text-left p-6 focus:outline-none">
+                        <div class="flex justify-between items-center">
+                            <h3 class="font-semibold text-lg">How accurate is your AI detection?</h3>
+                            <i class="fas fa-chevron-down text-[#00f5d0] transition-transform"></i>
+                        </div>
+                    </button>
+                    <div class="faq-content px-6 pb-6 hidden">
+                        <p class="text-gray-400">
+                            Our AI achieves 99.9% accuracy for most common threat detection scenarios. For specialized use cases (like weapon detection in crowded environments), accuracy ranges from 97-99% depending on camera quality and lighting conditions. We provide accuracy reports for each detection model.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 4 -->
+                <div class="bg-slate-800 bg-opacity-50 rounded-xl border border-slate-700 overflow-hidden">
+                    <button class="faq-toggle w-full text-left p-6 focus:outline-none">
+                        <div class="flex justify-between items-center">
+                            <h3 class="font-semibold text-lg">Is my video data secure with your platform?</h3>
+                            <i class="fas fa-chevron-down text-[#00f5d0] transition-transform"></i>
+                        </div>
+                    </button>
+                    <div class="faq-content px-6 pb-6 hidden">
+                        <p class="text-gray-400">
+                            Absolutely. We offer both cloud and on-premise processing options. Video never leaves your network unless you choose cloud processing. All data is encrypted in transit and at rest. We're GDPR, HIPAA, and SOC 2 compliant.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 5 -->
+                <div class="bg-slate-800 bg-opacity-50 rounded-xl border border-slate-700 overflow-hidden">
+                    <button class="faq-toggle w-full text-left p-6 focus:outline-none">
+                        <div class="flex justify-between items-center">
+                            <h3 class="font-semibold text-lg">What's included in the free trial?</h3>
+                            <i class="fas fa-chevron-down text-[#00f5d0] transition-transform"></i>
+                        </div>
+                    </button>
+                    <div class="faq-content px-6 pb-6 hidden">
+                        <p class="text-gray-400">
+                            The 30-day trial includes full access to all features for up to 5 cameras. You can test any combination of our AI models. Our support team will help with setup and optimization. No credit card required.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-gradient-to-r from-slate-900 to-blue-900">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto bg-slate-800 bg-opacity-50 backdrop-blur-sm rounded-xl p-8 md:p-12 border border-slate-700">
+                <div class="text-center mb-10">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">
+                        <i class="fas fa-envelope-open-text text-[#00f5d0] mr-3"></i> Request a Demo
+                    </h2>
+                    <p class="text-gray-300 max-w-2xl mx-auto">
+                        <i class="fas fa-clock text-[#00f5d0] mr-2"></i> Fill out the form below and our team will contact you within 24 hours to schedule your demo.
+                    </p>
+                </div>
+
+                <form class="space-y-6" id="contact-form">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="name" class="block text-sm font-medium mb-2">
+                                <i class="fas fa-user text-[#00f5d0] mr-2"></i> Full Name
+                            </label>
+                            <input type="text" id="name" name="name"
+                                class="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                required minlength="2">
+                        </div>
+                        <div>
+                            <label for="company" class="block text-sm font-medium mb-2">
+                                <i class="fas fa-building text-[#00f5d0] mr-2"></i> Company
+                            </label>
+                            <input type="text" id="company" name="company"
+                                class="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                required>
                         </div>
                     </div>
 
-                    <div class="mt-6 text-center">
-                        <button
-                            class="gradient-btn text-white px-8 py-3 rounded-full font-medium"
-                            onclick="scrollToContact()"
-                        >
-                            <i class="fas fa-paper-plane mr-2"></i> Get This Plan
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="email" class="block text-sm font-medium mb-2">
+                                <i class="fas fa-envelope text-[#00f5d0] mr-2"></i> Email
+                            </label>
+                            <input type="email" id="email" name="email"
+                                class="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                required pattern="[^@\s]+@[^@\s]+\.[^@\s]+">
+                        </div>
+                        <div>
+                            <label for="phone" class="block text-sm font-medium mb-2">
+                                <i class="fas fa-phone text-[#00f5d0] mr-2"></i> Phone
+                            </label>
+                            <input type="tel" id="phone" name="phone"
+                                class="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                pattern="[0-9]{10}" title="10 digit phone number">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label for="cameras" class="block text-sm font-medium mb-2">
+                            <i class="fas fa-video text-[#00f5d0] mr-2"></i> Number of Cameras
+                        </label>
+                        <select id="cameras" name="cameras"
+                            class="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            <option value="1-5">1-5</option>
+                            <option value="6-20">6-20</option>
+                            <option value="21-50">21-50</option>
+                            <option value="51-100">51-100</option>
+                            <option value="100+">100+</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label for="message" class="block text-sm font-medium mb-2">
+                            <i class="fas fa-question-circle text-[#00f5d0] mr-2"></i> What security challenges are you facing?
+                        </label>
+                        <textarea id="message" name="message" rows="4"
+                            class="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+                    </div>
+
+                    <div class="pt-4">
+                        <button type="submit"
+                            class="w-full gradient-btn text-white px-8 py-4 rounded-full font-medium text-lg hover:scale-105 transition-transform">
+                            <i class="fas fa-paper-plane mr-2"></i> Request Demo
                         </button>
                     </div>
-                </div>
-
-                <div class="mt-12 text-center">
-                    <p class="text-gray-400 text-sm max-w-2xl mx-auto">
-                        <i class="fas fa-info-circle text-[#00f5d0] mr-2"></i>
-                        All prices are exclusive of GST. Discounts available for annual commitments
-                        and large deployments.
-                    </p>
-                </div>
+                </form>
             </div>
-        </section>
-
-        <!-- Contact Section -->
-        <section id="contact" class="py-20 bg-gradient-to-r from-slate-900 to-blue-900">
-            <div class="container mx-auto px-6">
-                <div
-                    class="max-w-4xl mx-auto bg-slate-800 bg-opacity-50 backdrop-blur-sm rounded-xl p-8 md:p-12"
-                >
-                    <div class="text-center mb-10">
-                        <h2 class="text-3xl md:text-4xl font-bold mb-4">
-                            <i class="fas fa-envelope-open-text text-[#00f5d0] mr-3"></i> Request a
-                            Demo
-                        </h2>
-                        <p class="text-gray-300 max-w-2xl mx-auto">
-                            <i class="fas fa-clock text-[#00f5d0] mr-2"></i> Fill out the form below
-                            and our team will contact you within 24 hours to schedule your demo.
-                        </p>
-                    </div>
-
-                    <form class="space-y-6" id="contact-form">
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <div>
-                                <label for="name" class="block text-sm font-medium mb-2"
-                                    ><i class="fas fa-user text-[#00f5d0] mr-2"></i> Full
-                                    Name</label
-                                >
-                                <input
-                                    type="text"
-                                    id="name"
-                                    name="name"
-                                    class="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                    required
-                                />
-                            </div>
-                            <div>
-                                <label for="company" class="block text-sm font-medium mb-2"
-                                    ><i class="fas fa-building text-[#00f5d0] mr-2"></i>
-                                    Company</label
-                                >
-                                <input
-                                    type="text"
-                                    id="company"
-                                    name="company"
-                                    class="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                    required
-                                />
-                            </div>
-                        </div>
-
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <div>
-                                <label for="email" class="block text-sm font-medium mb-2"
-                                    ><i class="fas fa-envelope text-[#00f5d0] mr-2"></i>
-                                    Email</label
-                                >
-                                <input
-                                    type="email"
-                                    id="email"
-                                    name="email"
-                                    class="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                    required
-                                    pattern="[^@\s]+@[^@\s]+\.[^@\s]+"
-                                />
-                            </div>
-                            <div>
-                                <label for="phone" class="block text-sm font-medium mb-2"
-                                    ><i class="fas fa-phone text-[#00f5d0] mr-2"></i> Phone</label
-                                >
-                                <input
-                                    type="tel"
-                                    id="phone"
-                                    name="phone"
-                                    class="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                    pattern="[0-9]{10}"
-                                />
-                            </div>
-                        </div>
-
-                        <div>
-                            <label for="message" class="block text-sm font-medium mb-2"
-                                ><i class="fas fa-question-circle text-[#00f5d0] mr-2"></i> What are
-                                you looking to achieve with our solution?</label
-                            >
-                            <textarea
-                                id="message"
-                                name="message"
-                                rows="4"
-                                class="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                            ></textarea>
-                        </div>
-
-                        <div class="pt-4">
-                            <button
-                                type="submit"
-                                class="w-full gradient-btn text-white px-8 py-4 rounded-full font-medium text-lg"
-                            >
-                                <i class="fas fa-paper-plane mr-2"></i> Request Demo
-                            </button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </section>
-
-        <!-- Footer -->
-        <footer class="bg-slate-900 bg-opacity-50 py-12">
-            <div class="container mx-auto px-6">
-                <div class="flex flex-col md:flex-row justify-between items-center">
-                    <div class="mb-6 md:mb-0">
-                        <div class="flex items-center">
-                            <a
-                                href="#hero"
-                                class="flex items-center space-x-3 hover:scale-105 transition-transform duration-200"
-                            >
-                                <img
-                                    src="logo.png"
-                                    alt="Eagle Eye Analytics Logo"
-                                    class="h-[1.5em] w-auto object-contain"
-                                />
-                                <span class="text-2xl font-bold gradient-text"
-                                    >Eagle Eye Analytics</span
-                                >
-                            </a>
-                        </div>
-                        <p class="text-gray-400 max-w-md">
-                            <i class="fas fa-brain text-[#00f5d0] mr-2"></i> AI-powered video
-                            intelligence for enterprise security and loss prevention.
-                        </p>
-                    </div>
-                    <div class="grid grid-cols-2 md:grid-cols-3 gap-12">
-                        <div>
-                            <h4 class="text-lg font-semibold mb-4">
-                                <i class="fas fa-box-open text-[#00f5d0] mr-2"></i> Product
-                            </h4>
-                            <ul class="space-y-2">
-                                <li>
-                                    <a
-                                        href="#features"
-                                        class="text-gray-400 hover:text-blue-400 transition"
-                                        ><i class="fas fa-chevron-right text-[#00f5d0] mr-2"></i>
-                                        Features</a
-                                    >
-                                </li>
-                                <li>
-                                    <a
-                                        href="#pricing"
-                                        class="text-gray-400 hover:text-blue-400 transition"
-                                        ><i class="fas fa-chevron-right text-[#00f5d0] mr-2"></i>
-                                        Pricing</a
-                                    >
-                                </li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h4 class="text-lg font-semibold mb-4">
-                                <i class="fas fa-book text-[#00f5d0] mr-2"></i> Resources
-                            </h4>
-                            <ul class="space-y-2">
-                                <li>
-                                    <a
-                                        href="#contact"
-                                        class="text-gray-400 hover:text-blue-400 transition"
-                                        ><i class="fas fa-chevron-right text-[#00f5d0] mr-2"></i>
-                                        Contact Us</a
-                                    >
-                                </li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h4 class="text-lg font-semibold mb-4">
-                                <i class="fas fa-building text-[#00f5d0] mr-2"></i> Company
-                            </h4>
-                            <ul class="space-y-2">
-                                <li>
-                                    <a
-                                        href="#contact"
-                                        class="text-gray-400 hover:text-blue-400 transition"
-                                        ><i class="fas fa-chevron-right text-[#00f5d0] mr-2"></i>
-                                        Contact</a
-                                    >
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div
-                    class="border-t border-slate-700 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center"
-                >
-                    <p class="text-gray-500 mb-4 md:mb-0">
-                        <i class="far fa-copyright mr-2"></i> 2023 Eagle Eye Analytics. All rights
-                        reserved.
-                    </p>
-                    <div class="flex space-x-6">
-                        <a href="#" class="text-gray-400 hover:text-blue-400 transition text-xl"
-                            ><i class="fab fa-linkedin"></i
-                        ></a>
-                    </div>
-                </div>
-            </div>
-        </footer>
-
-        <!-- Back to top button -->
-        <div id="back-to-top" class="back-to-top" aria-label="Back to top">
-            <i class="fas fa-arrow-up"></i>
         </div>
+    </section>
 
-        <script src="script.js"></script>
-    </body>
+    <!-- Footer -->
+    <footer class="bg-slate-900 bg-opacity-90 py-12 backdrop-blur-sm">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-start">
+                <div class="mb-6 md:mb-0 max-w-md">
+                    <div class="flex items-center mb-4">
+                        <a href="#hero" class="flex items-center space-x-3 hover:scale-105 transition-transform duration-200">
+                            <img src="logo.png" alt="Eagle Eye Analytics Logo" class="h-[1.5em] w-auto object-contain">
+                            <span class="text-2xl font-bold gradient-text">Eagle Eye Analytics</span>
+                        </a>
+                    </div>
+                    <p class="text-gray-400 mb-4">
+                        <i class="fas fa-brain text-[#00f5d0] mr-2"></i> AI-powered video intelligence for enterprise security and loss prevention.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-[#00f5d0] transition text-xl">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-[#00f5d0] transition text-xl">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-[#00f5d0] transition text-xl">
+                            <i class="fab fa-github"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-12">
+                    <div>
+                        <h4 class="text-lg font-semibold mb-4 text-white">
+                            <i class="fas fa-box-open text-[#00f5d0] mr-2"></i> Product
+                        </h4>
+                        <ul class="space-y-2">
+                            <li>
+                                <a href="#features" class="text-gray-400 hover:text-[#00f5d0] transition flex items-center">
+                                    <i class="fas fa-chevron-right text-[#00f5d0] mr-2 text-xs"></i> Features
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#pricing" class="text-gray-400 hover:text-[#00f5d0] transition flex items-center">
+                                    <i class="fas fa-chevron-right text-[#00f5d0] mr-2 text-xs"></i> Pricing
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#solutions" class="text-gray-400 hover:text-[#00f5d0] transition flex items-center">
+                                    <i class="fas fa-chevron-right text-[#00f5d0] mr-2 text-xs"></i> Solutions
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h4 class="text-lg font-semibold mb-4 text-white">
+                            <i class="fas fa-book text-[#00f5d0] mr-2"></i> Resources
+                        </h4>
+                        <ul class="space-y-2">
+                            <li>
+                                <a href="#faq" class="text-gray-400 hover:text-[#00f5d0] transition flex items-center">
+                                    <i class="fas fa-chevron-right text-[#00f5d0] mr-2 text-xs"></i> FAQs
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="text-gray-400 hover:text-[#00f5d0] transition flex items-center">
+                                    <i class="fas fa-chevron-right text-[#00f5d0] mr-2 text-xs"></i> Documentation
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="text-gray-400 hover:text-[#00f5d0] transition flex items-center">
+                                    <i class="fas fa-chevron-right text-[#00f5d0] mr-2 text-xs"></i> API Reference
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h4 class="text-lg font-semibold mb-4 text-white">
+                            <i class="fas fa-building text-[#00f5d0] mr-2"></i> Company
+                        </h4>
+                        <ul class="space-y-2">
+                            <li>
+                                <a href="#contact" class="text-gray-400 hover:text-[#00f5d0] transition flex items-center">
+                                    <i class="fas fa-chevron-right text-[#00f5d0] mr-2 text-xs"></i> Contact
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="text-gray-400 hover:text-[#00f5d0] transition flex items-center">
+                                    <i class="fas fa-chevron-right text-[#00f5d0] mr-2 text-xs"></i> Careers
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="text-gray-400 hover:text-[#00f5d0] transition flex items-center">
+                                    <i class="fas fa-chevron-right text-[#00f5d0] mr-2 text-xs"></i> Blog
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-slate-700 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-500 mb-4 md:mb-0">
+                    <i class="far fa-copyright mr-2"></i> 2023 Eagle Eye Analytics. All rights reserved.
+                </p>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-[#00f5d0] transition text-sm">Privacy Policy</a>
+                    <a href="#" class="text-gray-400 hover:text-[#00f5d0] transition text-sm">Terms of Service</a>
+                    <a href="#" class="text-gray-400 hover:text-[#00f5d0] transition text-sm">Security</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to top button -->
+    <div id="back-to-top" class="back-to-top" aria-label="Back to top">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="script.js"></script>
+</body>
 </html>

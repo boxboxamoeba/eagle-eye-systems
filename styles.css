@@ -1,30 +1,75 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
-
 :root {
     --primary: #00f5d0;
     --secondary: #00a1d1;
+    --dark: #0f172a;
+    --darker: #020617;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+@keyframes float-delay {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(20px);
+    }
+}
+
+@keyframes pulse-slow {
+    0%, 100% {
+        opacity: 0.05;
+    }
+    50% {
+        opacity: 0.1;
+    }
 }
 
 body {
-    font-family: "Poppins", sans-serif;
-    background: linear-gradient(90deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+    font-family: 'Space Grotesk', -apple-system, sans-serif;
+    background: linear-gradient(to bottom, var(--darker) 0%, var(--dark) 100%);
+    color: #e2e8f0;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
     scroll-behavior: smooth;
     overflow-x: hidden;
+    min-height: 100vh;
 }
 
-/* Ensures perfect vertical alignment */
+/* Animations */
+.animate-float {
+    animation: float 6s ease-in-out infinite;
+}
+
+.animate-float-delay {
+    animation: float-delay 6s ease-in-out infinite 2s;
+}
+
+.animate-pulse-slow {
+    animation: pulse-slow 4s ease-in-out infinite;
+}
+
+/* Navigation */
 nav a,
 footer a {
     display: inline-flex;
     align-items: center;
+    transition: all 0.3s ease;
 }
 
-/* Precise height matching */
 nav img,
 footer img {
-    height: 1.5em; /* Exactly matches text-2xl line-height */
+    height: 1.5em;
     width: auto;
-    margin-top: -0.1em; /* Fine-tune vertical alignment if needed */
+    margin-top: -0.1em;
+    transition: all 0.3s ease;
 }
 
 /* Hover effects */
@@ -37,6 +82,7 @@ nav a:hover img,
 footer a:hover img {
     filter: drop-shadow(0 0 6px rgba(0, 245, 208, 0.4));
 }
+
 .gradient-text {
     background: linear-gradient(
         90deg,
@@ -52,6 +98,11 @@ footer a:hover img {
 
 .glow-effect {
     box-shadow: 0 0 15px rgba(0, 245, 208, 0.3);
+    transition: box-shadow 0.3s ease;
+}
+
+.glow-effect:hover {
+    box-shadow: 0 0 25px rgba(0, 245, 208, 0.5);
 }
 
 .nav-link::after {
@@ -77,11 +128,36 @@ footer a:hover img {
     transition: all 0.3s ease;
     color: white !important;
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    border: none;
+    position: relative;
+    overflow: hidden;
 }
 
 .gradient-btn:hover {
     transform: translateY(-2px);
     box-shadow: 0 10px 20px rgba(0, 245, 208, 0.3);
+}
+
+.gradient-btn::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    bottom: -50%;
+    left: -50%;
+    background: linear-gradient(to bottom, rgba(255,255,255,0.3), rgba(255,255,255,0));
+    transform: rotateZ(60deg) translate(-5em, 7.5em);
+    transition: all 0.3s ease;
+}
+
+.gradient-btn:hover::after {
+    animation: sheen 1s forwards;
+}
+
+@keyframes sheen {
+    100% {
+        transform: rotateZ(60deg) translate(1em, -9em);
+    }
 }
 
 .back-to-top {
@@ -102,11 +178,17 @@ footer a:hover img {
     transform: translateY(20px);
     transition: all 0.3s ease;
     box-shadow: 0 5px 15px rgba(0, 245, 208, 0.3);
+    border: none;
 }
 
 .back-to-top.show {
     opacity: 1;
     transform: translateY(0);
+}
+
+.back-to-top:hover {
+    transform: translateY(-5px) scale(1.1);
+    box-shadow: 0 8px 20px rgba(0, 245, 208, 0.4);
 }
 
 /* Sticky CTA */
@@ -121,23 +203,14 @@ footer a:hover img {
     z-index: 40;
     transform: translateY(100%);
     transition: transform 0.3s ease;
+    backdrop-filter: blur(10px);
+    border-top: 1px solid rgba(0, 245, 208, 0.1);
 }
 
 .sticky-cta.show {
     transform: translateY(0);
 }
 
-@keyframes pulse {
-    0% {
-        box-shadow: 0 0 0 0 rgba(0, 245, 208, 0.7);
-    }
-    70% {
-        box-shadow: 0 0 0 15px rgba(0, 245, 208, 0);
-    }
-    100% {
-        box-shadow: 0 0 0 0 rgba(0, 245, 208, 0);
-    }
-}
 /* Carousel Animations */
 @keyframes slideRight {
     0% {
@@ -165,6 +238,7 @@ footer a:hover img {
     animation-timing-function: linear;
     animation-iteration-count: infinite;
     white-space: nowrap;
+    will-change: transform;
 }
 
 .slide-right {
@@ -187,6 +261,13 @@ footer a:hover img {
     backdrop-filter: blur(10px);
     border: 1px solid rgba(0, 245, 208, 0.1);
     flex-shrink: 0;
+    transition: all 0.3s ease;
+}
+
+.solution-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--primary);
+    box-shadow: 0 10px 25px rgba(0, 245, 208, 0.1);
 }
 
 /* Price Calculator Styles */
@@ -204,4 +285,66 @@ footer a:hover img {
 .price-breakdown:hover {
     transform: translateY(-3px);
     box-shadow: 0 10px 25px rgba(0, 245, 208, 0.1);
+}
+
+/* FAQ Styles */
+.faq-toggle {
+    transition: all 0.3s ease;
+}
+
+.faq-toggle:hover {
+    background-color: rgba(0, 245, 208, 0.05);
+}
+
+.faq-toggle i {
+    transition: transform 0.3s ease;
+}
+
+.faq-toggle.active i {
+    transform: rotate(180deg);
+}
+
+.faq-content {
+    transition: all 0.3s ease;
+    max-height: 0;
+    overflow: hidden;
+}
+
+.faq-content.show {
+    max-height: 500px;
+}
+
+/* Loading animation */
+#loading {
+    transition: opacity 0.5s ease;
+}
+
+#loading.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .carousel-row {
+        gap: 15px;
+    }
+    
+    .solution-card {
+        min-width: 280px;
+    }
+    
+    .sticky-cta {
+        padding: 12px;
+    }
+}
+
+@media (max-width: 640px) {
+    .solution-card {
+        min-width: 260px;
+    }
+    
+    .gradient-btn {
+        padding: 0.75rem 1.5rem;
+    }
 }
