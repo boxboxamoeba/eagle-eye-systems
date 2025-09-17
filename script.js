@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Initialize all components
     initMobileMenu();
+    initFloatingNav()
     initCarousels();
     initBackToTop();
     initStickyCTA();
@@ -171,23 +172,54 @@ function initStickyCTA() {
 function initNavHighlights() {
     window.addEventListener("scroll", () => {
         const sections = document.querySelectorAll("section");
-        const navLinks = document.querySelectorAll(".nav-link");
+        const navLinks = document.querySelectorAll(".nav-link-modern");
 
         let current = "";
         sections.forEach((section) => {
             const sectionTop = section.offsetTop;
             const sectionHeight = section.clientHeight;
-            if (window.scrollY >= sectionTop - 100) {
+            if (window.scrollY >= sectionTop - 200) {
                 current = section.getAttribute("id");
             }
         });
 
         navLinks.forEach((link) => {
-            link.classList.remove("text-[#00f5d0]", "font-medium");
+            link.classList.remove("active");
             if (link.getAttribute("href").substring(1) === current) {
-                link.classList.add("text-[#00f5d0]", "font-medium");
+                link.classList.add("active");
             }
         });
+    });
+}
+// Floating nav scroll effects
+function initFloatingNav() {
+    const floatingNav = document.querySelector('.floating-nav');
+    let lastScrollY = window.scrollY;
+    let isScrollingDown = false;
+
+    window.addEventListener('scroll', () => {
+        const currentScrollY = window.scrollY;
+        isScrollingDown = currentScrollY > lastScrollY;
+
+        // Add scrolled class for blur effect
+        if (currentScrollY > 50) {
+            floatingNav.classList.add('scrolled');
+        } else {
+            floatingNav.classList.remove('scrolled');
+        }
+
+        // Hide nav when scrolling down rapidly, show when scrolling up
+        if (Math.abs(currentScrollY - lastScrollY) > 5) {
+            if (isScrollingDown && currentScrollY > 200) {
+                floatingNav.style.transform = 'translateY(-100%)';
+                floatingNav.style.opacity = '0';
+            } else {
+                floatingNav.style.transform = 'translateY(0)';
+                floatingNav.style.opacity = '1';
+            }
+        }
+
+        lastScrollY = currentScrollY;
     });
 }
 
