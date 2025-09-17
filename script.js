@@ -274,7 +274,7 @@ function showAlert(message, type) {
         setTimeout(() => {
             alert.remove();
         }, 300);
-    }, 3000);
+    }, 1000);
 }
 
 // Price Calculator Logic
